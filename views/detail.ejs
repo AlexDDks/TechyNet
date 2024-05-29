@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/fa36d49c1a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/detail.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+
+    <title>Product Detail</title>
+</head>
+<body>
+    <%- include('partials/header.ejs')%>
+
+    <section class="mainSection">
+        <article class="article">
+            <div class="divImage">
+                <img src="/img/products/selectProducts/<%= product.imageUrl %>" alt="<%= product.name %>">
+            </div>
+            <div class="productInfo">
+                <h1 class="productName"><%= product.name %></h1>
+                <div class="price">
+                    <% if (product.discount) { %>
+                        <span class="originalPrice">$<%= product.price %></span>
+                        <span class="discount">Discount: <%= product.discount %>%</span>
+                        <p class="finalPrice">$<%= product.finalPrice %></p>
+                    <% } else { %>
+                        <p class="finalPrice">$<%= product.finalPrice %></p>
+                    <% } %>
+                </div>
+                <div class="infoBottom">
+                    <% if (product.mif) { %>
+                        <p><i class="fa-solid fa-credit-card"></i> Up to <%= product.mif %> months interest free</p>
+                    <% } %>
+                    <p><i class="fa-solid fa-shop"></i> Pick up in seller's store</p>
+                    <% if (product.stock) { %>
+                        <p>Stock: <%= product.stock %> Units</p>
+                    <% } %>
+                </div>
+                <div class="buttons">
+                    <a href="#" class="buttonBuy">Buy Now</a>
+                    <form action="/cart/add" method="post" class="addToCartForm">
+                        <input type="hidden" name="productId" value="<%= product.id %>">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="buttonAddToCart">Add to Cart</button>
+                    </form>
+                </div>
+                <div class="productDescription">
+                    <p><%= product.description %></p>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <%- include('partials/footer.ejs')%>
+</body>
+</html>

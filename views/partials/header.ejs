@@ -1,0 +1,42 @@
+<header>
+    <nav class="navHeader">
+        <ul class="ulNavHeader">
+            <li class="navItem"><a href="/products">Smartphones</a></li>
+            <li class="navItem"><a href="/products">Computing</a></li>
+            <li class="navItem"><a href="/products">Blogging</a></li>
+            <li class="navItem"><a href="/products">Gaming</a></li>
+            <li class="navItem"><a href="/products">Accesories</a></li>
+        </ul>
+    </nav>
+
+    <div class="logo">
+        <a href="/"><img src="/img/logoWhite.png" alt="logo"></a>
+    </div>
+
+    <div class="navBarCenter">
+        <% if (locals.user) { %>
+            <div class="divLogin">
+                <li class="navItem">
+                    <a href="/users/login"><img class="imgProfile" src="/img/users/<%=user.imageUrl%>" alt=""></a>
+                    <ul class="verticalMenu">
+                        <li class="navItem"><a href="/users/login">My profile</a></li>
+                        <li class="navItem"><a href="/users/logout">Log out</a></li>
+                    </ul>
+                </li>
+            </div>
+        <% } else { %>
+            <div class="divLogin">
+                <li class="navItem">
+                    <a href="/users/login"><i class="fa-solid fa-user"></i></a>
+                </li>
+            </div>
+        <% } %>
+
+        <li class="navItem"><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+        <li class="navItem"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+    </div>
+
+    <div class="navBarRight">
+        <li class="navBars"><a href="#" class="aBurgerButton"><i class="fa-solid fa-bars"></i></a></li>
+    </div>
+</header>

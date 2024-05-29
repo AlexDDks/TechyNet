@@ -1,0 +1,2 @@
+Comenzar a probar el controlador de USER y terminar todo
+Comenzar a adecuar las cookies y todo lo relacionado a users
