@@ -1,0 +1,13 @@
+<input class="openModalDelete" type="radio" name="modalDelete" id="openModalDelete">
+<label class="labelOpenModalDelete" for="openModalDelete">Delete</label> 
+
+<div class="modalDelete" id="modalDelete">
+
+<h2>Are you sure to delete it?</h2>
+<form action="/users/delete/<%=user.id %>?_method=DELETE" method="POST" class="formDelete">
+    <button type="submit" class="buttonDelete">Delete</button>
+    </form>
+
+<input class="closeModalDelete" type="radio" name="modalDelete" id="closeModalDelete">
+<label class="labelCloseModalDelete" for="closeModalDelete">Return</label>
+</div>

@@ -15,21 +15,18 @@
 
     <div class="navBarCenter">
         <% if (locals.user) { %>
-            <div class="divLogin">
+
                 <li class="navItem">
                     <a href="/users/login"><img class="imgProfile" src="/img/users/<%=user.imageUrl%>" alt=""></a>
                     <ul class="verticalMenu">
-                        <li class="navItem"><a href="/users/login">My profile</a></li>
-                        <li class="navItem"><a href="/users/logout">Log out</a></li>
+                        <li class="itemVerMenu"><a href="/users/login">My profile</a></li>
+                        <li class="itemVerMenu"><a href="/users/logout">Log out</a></li>
                     </ul>
                 </li>
-            </div>
         <% } else { %>
-            <div class="divLogin">
                 <li class="navItem">
                     <a href="/users/login"><i class="fa-solid fa-user"></i></a>
                 </li>
-            </div>
         <% } %>
 
         <li class="navItem"><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>

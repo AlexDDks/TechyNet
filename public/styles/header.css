@@ -44,7 +44,7 @@ header nav ul li:hover::after {
 }
 
 header a {
-    color:rgb(240, 240, 240); 
+    color: rgb(245, 245, 245); 
     text-decoration: none;
 }
 
@@ -73,16 +73,46 @@ header a {
     z-index: 100;
 }
 
-.navBarCenter li {
+.navBarCenter .navItem{
+    width: 30%;
     list-style: none;
-    padding: 5px;
-    border-radius: 3px;
-    transition: all 250ms;
+    height: auto;
+    text-align: center;
 }
 
-.navBarCenter li:hover {
-   background-color: rgb(170, 170, 170);;
+.navBarCenter li img {
+    width: 100%;
+    border-radius: 50%;
+    border: 2px  rgb(245, 245, 245) solid;
+ }
+ 
+
+ .navBarCenter .verticalMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 50%;
+    margin-left: -10%;
+
+    display: none;
+    position: absolute; 
+    background-color: rgb(40, 40, 40); 
+    border-radius: 4px;
+    list-style: none;
 }
+
+.navBarCenter li:hover .verticalMenu {
+    display: block;
+}
+
+.verticalMenu li{
+    padding: 5px;
+}
+.verticalMenu li:hover{
+    background-color:rgb(170, 170, 170) ;
+}
+
+
 
 .navBarRight {
     display: none;

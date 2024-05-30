@@ -1,0 +1,189 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family:'Segoe UI';
+}
+
+body{
+  background-color: rgb(245, 245, 245);
+  color: rgb(18, 18, 18);
+}
+
+.user {
+    margin: 100px auto 0 auto;
+    width: 900px;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color:rgb(245, 245, 245) ;
+}
+
+.userBox {
+    background-color: rgb(40, 40, 40);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.userBox .divImg img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid rgb(240, 240, 240);
+}
+
+.userBox .userInfo {
+    flex: 1;
+}
+
+.userBox .userName {
+    font-size: 24px;
+    color: rgb(240, 240, 240);
+    margin-bottom: 10px;
+}
+
+.userBox .userEmail {
+    font-size: 16px;
+    color: rgb(200, 200, 200);
+}
+
+.userBox .divButtons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+.userBox .buttonEdit, .userBox .buttonRemove {
+    background-color: rgb(245, 245, 245);
+    color: rgb(18, 18, 18);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.userBox .buttonEdit:hover, .userBox .buttonRemove:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+.userHistory, .userCart {
+    background-color: rgb(40, 40, 40);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.userHistory h2, .userCart h2 {
+    color: rgb(245, 245, 245);
+    margin-bottom: 20px;
+}
+
+.userHistory ul, .userCart ul {
+    list-style: none;
+    padding: 0;
+}
+
+.userHistory li, .userCart li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 4px;
+    color: rgb(245, 245, 245);
+}
+
+.userHistory li p, .userCart li p {
+    margin-bottom: 5px;
+}
+
+.userCart .buttonRemove {
+    background-color: rgb(255, 100, 100);
+    color: rgb(245, 245, 245);
+}
+
+.userCart .buttonRemove:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+/* Estilo para el modal de eliminación */
+.modalDelete {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(40, 40, 40);
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 4px;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    text-align: center;
+}
+
+.modalDelete h2 {
+    color: rgb(245, 245, 245);
+    margin-bottom: 20px;
+}
+
+.modalDelete .formDelete .buttonDelete {
+    background-color: rgb(255, 100, 100);
+    color: rgb(245, 245, 245);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.modalDelete .formDelete .buttonDelete:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+input#openModalDelete:checked ~ .modalDelete {
+    display: block;
+}
+
+input#closeModalDelete:checked ~ .modalDelete {
+    display: none;
+}
+
+/* Ocultar los radio inputs */
+input[type="radio"].openModalDelete,
+input[type="radio"].closeModalDelete {
+    display: none;
+}
+
+/* Estilo para los labels de abrir y cerrar el modal */
+.labelOpenModalDelete,
+.labelCloseModalDelete {
+    background-color: rgb(255, 100, 100);
+    color: rgb(245, 245, 245);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.labelOpenModalDelete:hover,
+.labelCloseModalDelete:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+.labelCloseModalDelete {
+    margin-top: 10px;
+}

@@ -39,7 +39,7 @@ const controller = {
                 if (req.body.remember) {
                     res.cookie("remember", user.email, {maxAge: 600000});
                 }
-                return res.redirect("/users/profile/" + user.name);
+                return res.redirect("/");
             } else {
                 // La contraseña no es correcta
                 return res.render("login", {errors: {validationPassword: {msg: "Wrong password"}}, old: req.body});
@@ -89,7 +89,7 @@ processRegister: async (req, res) => {
           let loggedUser= newUser //Here, the user recently created is saved in a variable that is added to the req.session.user global variable
           req.session.user=loggedUser
           let emailName = loggedUser.email.split('@') //The split() method takes a pattern and divides a String into an ordered list of substrings by searching for the pattern, puts these substrings into an array, and returns the array. In this case we will have an array of two index ["nameOfTheEMail", "gmail.com"], because we have split taking the @ as separator.
-          res.redirect("/users/profile/"+ emailName[0])
+          res.redirect("/");
      } catch (error) {
          console.error(error);
          res.status(500).send("Internal Server Error");
@@ -112,58 +112,63 @@ profile: (req,res) => {
 edit: async (req, res) => {//This method only render the view detail and sends a form with the   information of one product
      const id = req.params.id//We obtain the id of the product from the URL, remember that the id is sends by the view, because when the user clicks a product, it itself has an id, and each product has the label a, which includes the parametrized path with the id. Something like: <a href="/products/edit/<%= product.id %>">
      const user = await db.User.findByPk(id)//The find() method returns the first element in the array of products(DB) that satisfies the provided testing function (the id) i.e. the variable "element" iterates in each element of the array and returns the first product that match with the id that is required in the URL and saves it into the const "product"
-     res.render("editUserView", { user })//We render the view and send all necesary information by the const product
+     res.render("editUser", { user })//We render the view and send all necesary information by the const product
 },
  
 update: async (req, res) => {
-    const id = req.params.id;
-    let user = await db.User.findByPk(id);
-  
-    if (!user) {
-      return res.status(404).send("User not found");
-    }
-  
-    const resultValidation = validationResult(req);
-    if (!resultValidation.isEmpty()) {
-      return res.render("editUserView", {
-        errors: resultValidation.mapped(),
+  const id = req.params.id;
+  let user = await db.User.findByPk(id);
+
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+
+  const resultValidation = validationResult(req);
+  if (!resultValidation.isEmpty()) {
+    return res.render("editUser", {
+      errors: resultValidation.mapped(),
+      user,
+      old: req.body
+    });
+  }
+
+  let updateData = {};
+  if (req.body.password) {
+    updateData.password = bcrypt.hashSync(req.body.password, 10);
+  }
+  if (req.file) {
+    updateData.imageUrl = req.file.filename;
+  } else {
+    updateData.imageUrl = user.imageUrl; // Mantener la imagen original si no se sube una nueva
+  }
+  if (req.body.email && req.body.email !== user.email) {
+    const emailExists = await db.User.findOne({ where: { email: req.body.email, id: { [Op.ne]: id } } });
+    if (emailExists) {
+      return res.render("editUser", {
+        errors: { email: { msg: "The email is already in use." } },
         user,
-        oldData: req.body
+        old: req.body
       });
     }
-  
-    let updateData = {};
-    if (req.body.password) {
-      updateData.password = bcrypt.hashSync(req.body.password, 10);
-    }
-    if (req.file) {
-      updateData.imageUrl = req.file.filename;
-    }
-    if (req.body.email && req.body.email !== user.email) {
-      const emailExists = await db.User.findOne({ where: { email: req.body.email, id: { [Op.ne]: id } } });
-      if (emailExists) {
-        return res.render("editUserView", {
-          errors: { email: { msg: "The email is already in use." } },
-          user,
-          oldData: req.body
-        });
-      }
-      updateData.email = req.body.email;
-    }
-    if (req.body.name) {
-      updateData.name = req.body.name;
-    }
-  
-    try {
-      await user.update(updateData);
-      req.session.user = { ...req.session.user, ...updateData, password: undefined };
-      res.redirect("/users/profile/" + user.name);
-    } catch (error) {
-      console.error("Update Error:", error);
-      res.status(500).send("Internal Server Error");
-    }
-  },
-  
+    updateData.email = req.body.email;
+  } else {
+    updateData.email = user.email; // Mantener el email original si no se cambia
+  }
+  if (req.body.name) {
+    updateData.name = req.body.name;
+  } else {
+    updateData.name = user.name; // Mantener el nombre original si no se cambia
+  }
+
+  try {
+    await user.update(updateData);
+    req.session.user = { ...req.session.user, ...updateData, password: undefined };
+    res.redirect("/users/profile/" + user.id);
+  } catch (error) {
+    console.error("Update Error:", error);
+    res.status(500).send("Internal Server Error");
+  }
+},
   
 
   
