@@ -46,7 +46,7 @@ detail: async (req, res) => {
         product.finalPrice = price;
       }
 
-      res.render("detail2", { product }); 
+      res.render("products/productsDetail", { product });
     }
   } catch (error) {
     console.error("Error fetching product:", error);
@@ -55,7 +55,7 @@ detail: async (req, res) => {
 },
 
   createForm: (req, res) => { //This method only render the form of create product
-  res.render("createForm")
+  res.render("products/createProduct")
 },
 
 createStore: async (req, res) => {
@@ -107,9 +107,9 @@ createStore: async (req, res) => {
         if (!product) {
             return res.status(404).render('productNotFound', { id });
         }
-        const categories = await db.Category.findAll(); //We found al the categories
+        // const categories = await db.Category.findAll(); //We found al the categories
 
-        res.render("editFormProducts", { product, categories }); //Render the view and sending the variables which are gonna be needed for the that
+        res.render("products/editProduct", { product, }); //Pendiente categories //Render the view and sending the variables which are gonna be needed for the that
 
     } catch (error) {
         console.error("Error loading edit form:", error);
@@ -129,7 +129,7 @@ editUpdate: async (req, res) => {
 
       const resultValidation = validationResult(req);//Validation data
       if (resultValidation.errors.length > 0) { 
-          return res.render("editFormProducts", { errors: resultValidation.mapped(), product, old: req.body }); //If there are any errors, those are sent with the old data 
+          return res.render("products/editProduct", { errors: resultValidation.mapped(), product, old: req.body }); //If there are any errors, those are sent with the old data 
       } else {
           let updateValues = {
               ...req.body,
@@ -158,7 +158,7 @@ delete: async (req, res) => {
         }
       });
         // Redirect to the products page to verify that the item was deleted
-      res.redirect("/products");
+      res.redirect("/");
     } catch (error) {
       // Handle any errors that occur during the deletion
       console.error("Error deleting product:", error);

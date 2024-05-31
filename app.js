@@ -37,7 +37,7 @@ app.use(methodOverride('_method'))
 // Routes
 const mainRouter = require("./routes/mainRouter")
 const usersRouter = require("./routes/usersRouter")
-// const productsRouter = require("./routes/productsRouter")
+const productsRouter = require("./routes/productsRouter")
 // const cartRouter = require("./routes/shoppingCarRouter")
 
 // const servicesRouter = require("./routes/servicesRouter")
@@ -45,7 +45,7 @@ const usersRouter = require("./routes/usersRouter")
 // Paths for router
 app.use("/", mainRouter)
 app.use("/users", usersRouter)
-// app.use("/products", productsRouter)
+app.use("/products", productsRouter)
 // app.use("/cart", cartRouter)
 
 // app.use("/services", servicesRouter)

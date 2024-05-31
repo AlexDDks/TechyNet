@@ -5,7 +5,7 @@ const multer = require('multer'); //We required module multer in order to use it
 const {body} = require('express-validator'); //We just use the body function, not all the library, so with destructuring assigment we are able to instance the function body in the constant body.
 
 // Requires
-const productControllerDB=require("../controllers/productControllerDB") //We required the module that we have already export in the controller of products.
+const productControllerDB=require("../controllers/ProductControllerDB") //We required the module that we have already export in the controller of products.
 
 /*Multer
 //All this code is based in the documentation: multer adds a body object and a file or files object to the request object. The body object contains the values of the text fields of the form, the file or files object contains the files uploaded via the form.*/
@@ -27,16 +27,26 @@ We use Express validator in order of validate (you will forgive the repetition) 
 const validateEditForm = [
   body("name").notEmpty().withMessage("You must fill the name"),
   body("price").notEmpty().withMessage("You must fill the price").bail()
-    .isNumeric().withMessage("It needs to be a number"),
+    .isNumeric().withMessage("Price needs to be a number"),
   body("description").notEmpty().withMessage("You must fill the description"),
   body("stock").notEmpty().withMessage("You must fill the stock").bail()
-    .isNumeric().withMessage("It needs to be a number"),
-    
-   // Haciendo MIF opcional pero debe ser numérico si se proporciona
-   body("mif").optional({ checkFalsy: true }).isNumeric().withMessage("MIF needs to be a number if provided"),
-   // Haciendo Discount opcional pero debe ser un decimal válido si se proporciona
-   body("discount").optional({ checkFalsy: true }).isDecimal().withMessage("Discount needs to be a valid decimal if provided"),
-   // Validaciones para Category
+    .isNumeric().withMessage("Stock needs to be a number"),
+  body("imageFile").custom((value, { req }) => {
+    if (req.file) {
+      const fileExtension = path.extname(req.file.originalname).toLowerCase();
+      const acceptedExtensions = ['.jpg', '.png', '.gif', '.jpeg'];
+      if (!acceptedExtensions.includes(fileExtension)) {
+        throw new Error("The image extensions accepted are: .jpg, .png, .jpeg, and .gif");
+      }
+    }
+    return true;
+  }),
+  body("monthsInterestFree").optional({ checkFalsy: true }).isNumeric().withMessage("Months Interest Free needs to be a number if provided"),
+  body("discount").optional({ checkFalsy: true }).isDecimal().withMessage("Discount needs to be a valid decimal if provided"),
+  body("category").notEmpty().withMessage("You must select a category"),
+  body("store").notEmpty().withMessage("You must fill the store name"),
+  body("rating").optional({ checkFalsy: true }).isDecimal().withMessage("Rating needs to be a valid decimal if provided"),
+  body("reviewCount").optional({ checkFalsy: true }).isNumeric().withMessage("Review Count needs to be a number if provided")
 ];
 
 const validateCreateForm = [
@@ -46,7 +56,7 @@ const validateCreateForm = [
   body("description").notEmpty().withMessage("You must fill the description"),
   body("stock").notEmpty().withMessage("You must fill the stock").bail()
     .isNumeric().withMessage("Stock needs to be a number"),
-  body("imageUrl").custom((value, { req }) => {
+  body("imageFile").custom((value, { req }) => {
     if (!req.file) {
       throw new Error("You must upload an image");
     }
@@ -57,13 +67,16 @@ const validateCreateForm = [
     }
     return true;
   }),
-   // Haciendo MIF opcional pero debe ser numérico si se proporciona
-   body("mif").optional({ checkFalsy: true }).isNumeric().withMessage("MIF needs to be a number if provided"),
-   // Haciendo Discount opcional pero debe ser un decimal válido si se proporciona
-   body("discount").optional({ checkFalsy: true }).isDecimal().withMessage("Discount needs to be a valid decimal if provided"),
-   // Validaciones para Category
-   body("category").notEmpty().withMessage("You must select a category")
+  body("monthsInterestFree").optional({ checkFalsy: true }).isNumeric().withMessage("Months Interest Free needs to be a number if provided"),
+  body("discount").optional({ checkFalsy: true }).isDecimal().withMessage("Discount needs to be a valid decimal if provided"),
+  body("category").notEmpty().withMessage("You must select a category"),
+  body("store").notEmpty().withMessage("You must fill the store name"),
+  body("rating").optional({ checkFalsy: true }).isDecimal().withMessage("Rating needs to be a valid decimal if provided"),
+  body("reviewCount").optional({ checkFalsy: true }).isNumeric().withMessage("Review Count needs to be a number if provided")
 ];
+
+module.exports = validateCreateForm;
+
 
 
 // CRUD

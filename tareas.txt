@@ -1,7 +1,3 @@
-Ya sirve el create, edit, read. Vamos a checar el delete del usuario.
+COMPLETAR EL CRUD DE PRODUCTOS
 
-Revisar por qué la imagen sino es cuadrada, se sube y se ve torcida
-
-Hacer pruebas completas de validaciones de datos.
-
-Fotos que se reemplacen, deben de eliminarse
+Fotos que se reemplacen, deben de eliminarse EN TODOS LOS CRUDS
