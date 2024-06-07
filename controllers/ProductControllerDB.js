@@ -1,28 +1,27 @@
 const {validationResult} = require("express-validator") //We just need the result of the validation, so we just destructuring to obtain it from the object of express validator
 const db = require("../database/models"); //We require the module index.js from the folder models, which sumarize all the information of the tables in the DB
+const { Op } = require('sequelize'); // Importa Op para usar operadores
 
 const controller = {
 
-productsList: async (req, res) => { //This method send to the view products just the ones that match with the chosen by the user.
-
-  try { //We use the try/catch approach to manage the asyncronous operation
-      const categoryFilter = req.query.category;//Extracting the category from query parameters
-      let queryOptions = {// This variable defines the options of the query
-          include: [{ //The property include establish a relation which needs to be included in the query 
-              model: db.Category,//Indactes the model to include in the query
-              as: 'Category', //The model has the alias Category
-          }]
-      };
-      if (categoryFilter) { // If a Category is provided, add a where clause to the query options
-          queryOptions.include[0].where = { name: categoryFilter };//The queryOptions is modify in order of include the where statement in the first index of include.
-      }
-      const Products = await db.Product.findAll(queryOptions)//The constant Product is gonna be an object with all the requirements of the queryOptions, including the name of the category. Await the resolution of the findAll promise, effectively pausing execution until it's resolve. 
-
-      res.render("products", { Products });// Render the products page with the retrieved products
-  } catch (error) {// Catch handle any errors that occur during the try block
-      console.error("Error searching the products: ", error);
-      res.status(500).send("Internal Server Error"); //The server found an action that can't know how to manage it
-  }
+  productsList: async (req, res) => { 
+    try { 
+        const categoryFilter = req.query.category || 'All categories';
+        let queryOptions = {
+            include: [{ 
+                model: db.Category,
+                as: 'category', 
+            }]
+        };
+        if (categoryFilter && categoryFilter !== 'All categories') {
+            queryOptions.include[0].where = { name: categoryFilter };
+        }
+        const Products = await db.Product.findAll(queryOptions);
+        res.render("products/productsList", { Products, query: null, category: categoryFilter });
+    } catch (error) { 
+        console.error("Error searching the products: ", error);
+        res.status(500).send("Internal Server Error"); 
+    }
 },
 
 detail: async (req, res) => {
@@ -131,13 +130,16 @@ editUpdate: async (req, res) => {
       if (resultValidation.errors.length > 0) { 
           return res.render("products/editProduct", { errors: resultValidation.mapped(), product, old: req.body }); //If there are any errors, those are sent with the old data 
       } else {
-          let updateValues = {
-              ...req.body,
-              imageUrl: req.file ? req.file.filename : product.imageUrl, //We update only if the user added a new image
-              mif: req.body.mif === '' || isNaN(req.body.mif) ? null : req.body.mif,
-              discount: req.body.discount === '' || isNaN(req.body.discount) ? null : req.body.discount,
-              categoryId: req.body.category //We add the category because in the form we establish the logic of relate the categoryId with the differents categories.
-          };
+        let updateValues = {
+          ...req.body,
+          imageUrl: req.file ? req.file.filename : product.imageUrl, // We update only if the user added a new image
+          monthsInterestFree: req.body.monthsInterestFree === '' ? null : req.body.monthsInterestFree,
+          discount: req.body.discount === '' ? null : req.body.discount,
+          categoryId: req.body.category,
+          rating: req.body.rating === '' ? null : req.body.rating,
+          reviewCount: req.body.reviewCount === '' ? null : req.body.reviewCount
+      };
+      
 
           // Realizar la actualización con los valores preparados
           await product.update(updateValues);
@@ -165,7 +167,29 @@ delete: async (req, res) => {
       // Redirect or render an error page with a message, depending on your app's flow
       res.status(500).send("There was a problem deleting the product.");
     }
-  }
+  },
+    search: async (req, res) => {
+      try {
+          const query = req.query.q;
+          const products = await db.Product.findAll({
+              where: {
+                  [Op.or]: [
+                      { name: { [Op.like]: `%${query}%` } },
+                      { description: { [Op.like]: `%${query}%` } },
+                      { '$category.name$': { [Op.like]: `%${query}%` } }
+                  ]
+              },
+              include: [{
+                  model: db.Category,
+                  as: 'category'
+              }]
+          });
+          res.render('products/productsList', { Products: products, query: query, category: 'Personalized Categories' });
+      } catch (error) {
+          console.error(error);
+          res.status(500).send('Internal Server Error');
+      }
+  },
   
 }
 

@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: rgb(245, 245, 245);
+    color: rgb(33, 33, 33); /* Ajuste para el color del texto */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.categorySelectContainer {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    margin-top: 100px; /* Separación superior de 100px */
+}
+
+.categorySelect {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(100, 100, 100);
+    background-color: rgb(33, 33, 33);
+    color: rgb(245, 245, 245);
+    font-size: 16px;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex: 1;
+    margin: 100px 0; /* Separación superior e inferior de 100px */
+}
+
+.productBox {
+    background-color: rgb(40, 40, 40); /* Fondo gris oscuro para los productos */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    overflow: hidden;
+    width: 200px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.productBox:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.divProducts img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.divClass {
+    text-align: right;
+    padding: 10px;
+}
+
+.divClass i {
+    color: rgb(245, 245, 245); /* Icono blanco */
+    font-size: 1.2em;
+}
+
+.productInfo {
+    padding: 10px;
+    text-align: center;
+}
+
+.productInfo h2 {
+    color: rgb(245, 245, 245); /* Texto blanco */
+    margin: 0 0 10px 0;
+}
+
+.productInfo span {
+    color: rgb(255, 100, 100); /* Rojo para el descuento */
+    display: block;
+    margin-bottom: 10px;
+}
+
+.pName {
+    font-size: 1em;
+    font-weight: bold;
+    color: rgb(245, 245, 245);
+    margin: 0 0 5px 0;
+}
+
+.pDescription {
+    font-size: 0.9em;
+    color: rgb(200, 200, 200); /* Texto gris claro */
+    margin: 0;
+}

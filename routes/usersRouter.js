@@ -73,6 +73,21 @@ const validateEditForm = [
   })
 ];
 
+// Validaciones para la solicitud de restablecimiento de contraseña
+const validationResetRequest = [
+  body('email').notEmpty().withMessage('You must fill the blank').bail().isEmail().withMessage('It needs to be an email')
+];
+
+// Validaciones para restablecer la contraseña
+const validationResetPassword = [
+  body('password').notEmpty().withMessage('You must write a password').bail().isLength({ min: 8 }).withMessage('Must be at least 8 characters'),
+  body('passwordRep').notEmpty().withMessage('You must confirm your password').bail().custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error("Password confirmation does not match password");
+    }
+    return true;
+  })
+];
 
 
 // CRUD
@@ -93,6 +108,13 @@ router.put('/edit/:id', upload.single("imageUrl"), validateEditForm ,usersContro
 
 //DELETE
 router.delete('/delete/:id', usersController.delete);//The parameter id is obtained when the user clicks on a product, and because the product itself has an id in the database, we can us it in the view with a link label, somenthing like: <a href="/user/delete/<%= user.id %>">
+
+// Rutas para restablecimiento de contraseña
+router.get('/resetPasswordRequest', usersController.renderRequestResetPassword);
+router.post('/resetPasswordRequest', validationResetRequest, usersController.requestResetPassword);
+
+router.get('/resetPassword/:token', usersController.renderResetPassword);
+router.post('/resetPassword/:token', validationResetPassword, usersController.resetPassword);
 
 
 module.exports=router //We must export the variable router in order of being required in the entry point paths

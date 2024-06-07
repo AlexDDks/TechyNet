@@ -1,11 +1,11 @@
 <header>
     <nav class="navHeader">
-        <ul class="ulNavHeader">
-            <li class="navItem"><a href="/products">Smartphones</a></li>
-            <li class="navItem"><a href="/products">Computing</a></li>
-            <li class="navItem"><a href="/products">Blogging</a></li>
-            <li class="navItem"><a href="/products">Gaming</a></li>
-            <li class="navItem"><a href="/products">Accesories</a></li>
+        <ul>
+            <li class="navItem"><a href="/products?category=Smartphones">Smartphones</a></li>
+            <li class="navItem"><a href="/products?category=Computing">Computing</a></li>
+            <li class="navItem"><a href="/products?category=Blogging">Blogging</a></li>
+            <li class="navItem"><a href="/products?category=Gaming">Gaming</a></li>
+            <li class="navItem"><a href="/products?category=Accesories">Accesories</a></li>
         </ul>
     </nav>
 
@@ -15,28 +15,41 @@
 
     <div class="navBarCenter">
         <% if (locals.user) { %>
-
-                <li class="navItem">
-                    <div class="divImg">
-
+            <li class="navItem">
+                <div class="divImg">
                     <a href="/users/login"><img class="imgProfile" src="/img/users/<%=user.imageUrl%>" alt=""></a>
-                    </div>
-                    <ul class="verticalMenu">
-                        <li class="itemVerMenu"><a href="/users/login">My profile</a></li>
-                        <li class="itemVerMenu"><a href="/users/logout">Log out</a></li>
-                    </ul>
-                </li>
+                </div>
+                <ul class="verticalMenu">
+                    <li class="itemVerMenu"><a href="/users/login">My profile</a></li>
+                    <li class="itemVerMenu"><a href="/users/logout">Log out</a></li>
+                </ul>
+            </li>
         <% } else { %>
-                <li class="navItem">
-                    <a href="/users/login"><i class="fa-solid fa-user"></i></a>
-                </li>
+            <li class="navItem">
+                <a href="/users/login"><i class="fa-solid fa-user"></i></a>
+            </li>
         <% } %>
-
-        <li class="navItem"><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-        <li class="navItem"><a href="#"><i class="fa-solid fa-cart-shopping"></i></a></li>
+        <li class="navItem">
+            <a href="#" id="searchIcon"><i class="fa-solid fa-magnifying-glass"></i></a>
+        </li>
+        <li class="navItem">
+            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        </li>
     </div>
 
     <div class="navBarRight">
         <li class="navBars"><a href="#" class="aBurgerButton"><i class="fa-solid fa-bars"></i></a></li>
     </div>
+
+    <div class="searchBar" id="searchBar">
+        <form id="searchForm" action="/products/search" method="get">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit"><i class="fa-solid fa-search"></i></button>
+            <button type="button" id="closeSearch"><i class="fa-solid fa-times"></i></button>
+        </form>
+    </div>
 </header>
+
+
+
+<script src="/js/searchBar.js"></script>

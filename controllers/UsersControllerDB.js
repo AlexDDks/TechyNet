@@ -1,8 +1,11 @@
 const {validationResult} = require("express-validator");//We just need the result of the validation, so we just do destructuring to obtain it from the object of express validator
 const path = require("path")
 const fs = require ("fs")
+const crypto = require('crypto');
 const bcrypt = require('bcrypt'); //We require the module bcrypt to use a method of hash the password of the user
-let db = require("../database/models");
+const db = require("../database/models");
+const nodemailer = require('nodemailer');
+require('dotenv').config(); // Cargar las variables de entorno
 
 const controller = {
    login: (req,res) => {
@@ -49,11 +52,119 @@ const controller = {
             return res.status(500).send("Internal Server Error");
         }
     },
-    
 
-register: (req,res) => {//This method only render
-     res.render("register")
-},
+    register: (req, res) =>{
+      res.render("register")
+    },
+    
+    // Método para renderizar la vista de solicitud de restablecimiento de contraseña
+    renderRequestResetPassword: (req, res) => {
+      res.render('users/requestResetPassword');
+    },
+  
+    requestResetPassword: async (req, res) => {
+      const resultValidation = validationResult(req);
+      if (!resultValidation.isEmpty()) {
+        res.locals.errors = resultValidation.mapped();
+        return res.render('users/requestResetPassword');
+      }
+  
+      const { email } = req.body;
+      try {
+        const user = await db.User.findOne({ where: { email } });
+        if (!user) {
+          res.locals.errors = { email: { msg: "Email not found" } };
+          return res.render('users/requestResetPassword');
+        }
+  
+        const token = crypto.randomBytes(20).toString('hex');
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hora
+        await user.save();
+  
+        const resetLink = `http://${req.headers.host}/users/resetPassword/${token}`;
+        console.log(`Password reset link: ${resetLink}`);
+  
+// Enviar email solo si el email es magarciaa92@gmail.com
+if (email === 'magarciaa92@gmail.com') {
+  const transporter = nodemailer.createTransport({
+    service: 'Gmail', // o cualquier otro servicio de correo
+    auth: {
+      user: process.env.EMAIL_USER, // Usar variable de entorno
+      pass: process.env.EMAIL_PASS
+    }
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: 'Password Reset',
+    text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n
+           Please click on the following link, or paste this into your browser to complete the process:\n\n
+           ${resetLink}\n\n
+           If you did not request this, please ignore this email and your password will remain unchanged.\n`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error(`Error sending email: ${error}`);
+    } else {
+      console.log(`Email sent: ${info.response}`);
+    }
+  });
+}  
+        return res.render('users/resetPasswordConfirmation');
+      } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal Server Error");
+      }
+    },
+  
+    renderResetPassword: (req, res) => {
+      res.render('users/resetPassword', { token: req.params.token });
+    },
+  
+    resetPassword: async (req, res) => {
+      const resultValidation = validationResult(req);
+      if (!resultValidation.isEmpty()) {
+        res.locals.errors = resultValidation.mapped();
+        return res.render('users/resetPassword', { token: req.params.token });
+      }
+  
+      const { token } = req.params;
+      const { password, passwordRep } = req.body;
+  
+      if (password !== passwordRep) {
+        res.locals.errors = { passwordRep: { msg: "Passwords do not match" } };
+        return res.render('users/resetPassword', { token });
+      }
+  
+      try {
+        const user = await db.User.findOne({
+          where: {
+            resetPasswordToken: token,
+            resetPasswordExpires: { [db.Sequelize.Op.gt]: Date.now() }
+          }
+        });
+  
+        if (!user) {
+          res.locals.errors = { token: { msg: "Password reset token is invalid or has expired." } };
+          return res.render('users/resetPassword', { token });
+        }
+  
+        user.password = bcrypt.hashSync(password, 10);
+        user.resetPasswordToken = null;
+        user.resetPasswordExpires = null;
+        await user.save();
+  
+        return res.render('users/resetPasswordSuccess');
+      } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal Server Error");
+      }
+    },
+  
+  
 
 processRegister: async (req, res) => {
      const resultValidation = validationResult(req);
@@ -97,8 +208,10 @@ processRegister: async (req, res) => {
  },
 
 restore: (req,res) => { //This method just render a view
-     res.render("restorePassword")
+     res.render("requestResetPassword")
 },
+
+
 
 profile: (req,res) => {
      if (req.session.user) { //If the user is already logged, we sent him/her to his/hers profile with all the information

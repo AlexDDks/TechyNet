@@ -50,10 +50,10 @@ app.use("/products", productsRouter)
 
 // app.use("/services", servicesRouter)
 
-// 404 error set
-app.use((req, res, next) => {
-    res.status(404).render('not-found')
-})
+// // 404 error set
+// app.use((req, res, next) => {
+//     res.status(404).render('not-found')
+// })
 
 //Setting
 const PORT = globalConstants.PORT

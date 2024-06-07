@@ -1,3 +1,2 @@
-COMPLETAR EL CRUD DE PRODUCTOS
+Comenzar a realizar búsquedas con la barra de búsqueda
 
-Fotos que se reemplacen, deben de eliminarse EN TODOS LOS CRUDS

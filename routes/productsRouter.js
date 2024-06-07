@@ -86,6 +86,7 @@ router.get("/create",productControllerDB.createForm)
 router.get("/shoppingcar",productControllerDB.shoppingCar)
 router.get("/detail/:id",productControllerDB.detail) //The parameter id is obtained when the user clicks on a product, and because the product itself has an id in the database, we can us it in the view with a link label, somenthing like: <a href="/products/detail/<%= product.id %>">
 router.get("/edit/:id",productControllerDB.editForm) //The parameter id is obtained when the user clicks on a product, and because the product itself has an id in the database, we can us it in the view with a link label, somenthing like: <a href="/products/detail/<%= product.id %>">
+router.get('/search', productControllerDB.search);
 
 // Post
 router.post('/create', upload.single('imageUrl'), validateCreateForm, productControllerDB.createStore); //This route sends us to the controller that made all the magi to upload an image and save it in the DB. upload.single('image'), means that only one image (which was uploaded in the fild name="image") is gonna be uploaded
