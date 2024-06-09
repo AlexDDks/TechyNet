@@ -143,7 +143,7 @@ editUpdate: async (req, res) => {
 
           // Realizar la actualización con los valores preparados
           await product.update(updateValues);
-          res.redirect("/products/detail/" + id); // Redireccionar a la página de detalles del producto después de la actualización exitosa
+          res.redirect("/products/productsDetail/" + id); // Redireccionar a la página de detalles del producto después de la actualización exitosa
       }
   } catch (error) { // Capturar y manejar cualquier error que ocurra
       console.error("Error updating product:", error);

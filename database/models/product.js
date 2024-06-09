@@ -3,11 +3,14 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
-      // Define associations here
+      // Definir la relación entre Product y Category
       Product.belongsTo(models.Category, {
         foreignKey: 'categoryId',
         as: 'category'
       });
+
+      // Definir la relación entre Product y CartItem
+      Product.hasMany(models.CartItem, { foreignKey: 'productId', as: 'cartItems' });
     }
   }
   Product.init({

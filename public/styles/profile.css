@@ -82,9 +82,7 @@ body{
 
 .userBox .buttonEdit:hover, .userBox .buttonRemove:hover {
     background-color: rgb(200, 200, 200);
-}
-
-.userHistory, .userCart {
+}.userHistory, .userCart {
     background-color: rgb(40, 40, 40);
     border-radius: 8px;
     padding: 20px;
@@ -113,14 +111,54 @@ body{
     margin-bottom: 5px;
 }
 
+.cartItem {
+    display: flex;
+    align-items: center;
+}
+
+.cartItemImg {
+    margin-right: 15px;
+}
+
+.cartItemImg img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cartItemInfo {
+    flex-grow: 1;
+}
+
 .userCart .buttonRemove {
     background-color: rgb(255, 100, 100);
     color: rgb(245, 245, 245);
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .userCart .buttonRemove:hover {
     background-color: rgb(200, 50, 50);
 }
+
+.userCart .buttonBuy {
+    background-color: rgb(50, 205, 50);
+    color: rgb(245, 245, 245);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.userCart .buttonBuy:hover {
+    background-color: rgb(34, 139, 34);
+}
+
 
 /* Estilo para el modal de eliminación */
 .modalDelete {

@@ -1,2 +1,3 @@
-Comenzar a realizar búsquedas con la barra de búsqueda
+Comenzar a realizar compras desde la página de detalles de producto, no sólo desde el caarrito de compras
+Comenzar con diseño responsivo
 

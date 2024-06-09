@@ -1,0 +1,31 @@
+/* styles/checkoutSuccess.css */
+.checkoutSuccess {
+    text-align: center;
+    padding: 50px;
+    background-color: rgb(40, 40, 40);
+    border-radius: 8px;
+    margin: 100px auto;
+    max-width: 600px;
+    color: rgb(245, 245, 245);
+}
+
+.checkoutSuccess h1 {
+    margin-bottom: 20px;
+}
+
+.checkoutSuccess p {
+    margin-bottom: 30px;
+}
+
+.checkoutSuccess .button {
+    background-color: rgb(50, 205, 50);
+    color: rgb(245, 245, 245);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.checkoutSuccess .button:hover {
+    background-color: rgb(34, 139, 34);
+}

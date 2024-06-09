@@ -211,16 +211,79 @@ restore: (req,res) => { //This method just render a view
      res.render("requestResetPassword")
 },
 
+profile: async (req, res) => {
+  if (req.session.user) {
+    try {
+      const user = await db.User.findByPk(req.session.user.id, {
+        include: [
+          {
+            model: db.Cart,
+            as: 'cart',
+            include: [
+              {
+                model: db.CartItem,
+                as: 'items',
+                include: [
+                  {
+                    model: db.Product,
+                    as: 'product'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            model: db.Order,
+            as: 'orders',
+            include: [
+              {
+                model: db.OrderItem,
+                as: 'items',
+                include: [
+                  {
+                    model: db.Product,
+                    as: 'product'
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      });
 
+      const cartItems = user.cart ? user.cart.items.map(item => ({
+        productName: item.product.name,
+        quantity: item.quantity,
+        price: item.product.price,
+        productId: item.product.id,
+        imageUrl:item.product.imageUrl,
+      })) : [];
 
-profile: (req,res) => {
-     if (req.session.user) { //If the user is already logged, we sent him/her to his/hers profile with all the information
-          res.render("profile",{user:req.session.user}) //We send all the information of the user, to the view
-     }
-     else{
-          res.render("login") //If the user is not logged, we sent the view login
-     }
+      const purchaseHistory = user.orders ? user.orders.map(order => ({
+        orderId: order.id,
+        date: order.date.toDateString(),
+        total: order.total,
+        items: order.items.map(item => ({
+          productName: item.product.name,
+          quantity: item.quantity,
+          price: item.price
+        }))
+      })) : [];
+
+      res.render('profile', {
+        user: req.session.user,
+        cart: cartItems,
+        purchaseHistory
+      });
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  } else {
+    res.redirect('/users/login');
+  }
 },
+
 
 edit: async (req, res) => {//This method only render the view detail and sends a form with the   information of one product
      const id = req.params.id//We obtain the id of the product from the URL, remember that the id is sends by the view, because when the user clicks a product, it itself has an id, and each product has the label a, which includes the parametrized path with the id. Something like: <a href="/products/edit/<%= product.id %>">

@@ -39,9 +39,13 @@
                     <% } %>
                     <p><i class="fa-solid fa-star"></i> Rating: <%= product.rating %> (<%= product.reviewCount %> reviews)</p>
                 </div>
-                <div>
-                    <a href="#"><button class="buttonBuy">Buy now</button></a>
-                </div>
+                
+                <form action="/cart/checkout" method="post">
+                    <input type="hidden" name="productId" value="<%= product.id %>">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="buttonBuy">Buy now</button>
+                </form>
+                
                 <div>
                     <form action="/cart/add" method="post">
                         <input type="hidden" name="productId" value="<%= product.id %>">
