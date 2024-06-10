@@ -162,3 +162,89 @@ body {
     line-height: 1.5;
     color: rgb(245, 245, 245);
 }
+
+@media (max-width: 768px) {
+    .mainSection {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .article {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .divImage {
+        width: 100%;
+        height: auto;
+    }
+
+    .divImage img {
+        width: 100%;
+        height: auto;
+    }
+
+    .pName {
+        font-size: 20px;
+    }
+
+    .price {
+        font-size: 18px;
+    }
+
+    .pFinalPrice {
+        font-size: 22px;
+    }
+
+    .productDescription {
+        font-size: 14px;
+    }
+
+    .buttonBuy,
+    .shoppingCar,
+    .buttonEdit {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .actionButton {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 468px) {
+    .mainSection {
+        padding: 5px;
+    }
+
+    .divImage {
+        width: 100%;
+        height: auto;
+    }
+
+    .pName {
+        font-size: 18px;
+    }
+
+    .price {
+        font-size: 16px;
+    }
+
+    .pFinalPrice {
+        font-size: 20px;
+    }
+
+    .productDescription {
+        font-size: 12px;
+    }
+
+    .buttonBuy,
+    .shoppingCar,
+    .buttonEdit {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}

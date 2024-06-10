@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/fa36d49c1a.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/styles/profile.css">
+    <link rel="stylesheet" href="/styles/users/profile.css">
     <link rel="stylesheet" href="/styles/header.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <title><%= user.email %></title>
 </head>
 <body>
-    <%- include('partials/header.ejs') %>
+    <%- include('../partials/header.ejs') %>
 
     <section class="user">
         <article class="userBox">
@@ -26,7 +26,7 @@
                 <div class="divEdit">
                     <a href="/users/edit/<%= user.id %>" class="buttonEdit">Edit Profile</a>
                 </div>
-                <%- include('partials/modalDeleteUser.ejs') %>
+                <%- include('../partials/modalDeleteUser.ejs') %>
             </div>
         </article>
 
@@ -88,9 +88,9 @@
                 <% } %>
             </ul>
         </article>
-        
+    </section>    
         
 
-    <%- include('partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
 </body>
 </html>

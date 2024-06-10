@@ -27,7 +27,8 @@ footer i{
 }
 
 .articleBottomFooter{
-    width: 1200px;
+    width: 90%;
+    text-align: center;
     font-size: 18px;
     margin: 50px auto 0px auto;
     color:rgb(85, 85, 85); 
@@ -36,4 +37,9 @@ footer i{
 span{
     font-weight: bold;
     color: rgb(18, 18, 18); 
+}
+
+@media (max-width:480px){
+   footer{ margin-top: 20px;
+}
 }

@@ -46,7 +46,7 @@ h2 {
     margin-bottom: 15px;
 }
 
-input.barra {
+input.barra, input.inputFile {
     width: 100%;
     padding: 10px;
     border: 1px solid rgb(100, 100, 100);
@@ -55,7 +55,7 @@ input.barra {
     color: rgb(245, 245, 245);
 }
 
-.barra::placeholder {
+input.barra::placeholder, input.inputFile::placeholder {
     color: rgb(245, 245, 245);
 }
 
@@ -74,13 +74,13 @@ input.barra {
     margin-right: 10px;
 }
 
-.reestablecerContrasena, .spanRegister, .register {
+.reestablecerContrasena, .register, .login {
     color: rgb(245, 245, 245);
     font-size: 14px;
     text-decoration: none;
 }
 
-.reestablecerContrasena:hover, .register:hover {
+.reestablecerContrasena:hover, .register:hover, .login:hover {
     text-decoration: underline;
 }
 
@@ -98,4 +98,41 @@ input.barra {
 
 .boton:hover {
     background-color: rgb(200, 200, 200);
+}
+
+.labelFile {
+    color: rgb(245, 245, 245);
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .mainContainer {
+        padding-top: 70px;
+    }
+
+    .formLogin {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .boton {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 468px) {
+    .mainContainer {
+        padding-top: 50px;
+    }
+
+    .formLogin {
+        padding: 10px;
+    }
+
+    .boton {
+        font-size: 12px;
+        padding: 8px;
+    }
 }

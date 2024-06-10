@@ -95,3 +95,33 @@ input.barra::placeholder, input.inputFile::placeholder {
 .login:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+    .mainContainer {
+        padding-top: 70px;
+    }
+
+    .formLogin {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .boton {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 468px) {
+    .mainContainer {
+        padding-top: 50px;
+    }
+
+    .formLogin {
+        padding: 10px;
+    }
+
+    .boton {
+        font-size: 12px;
+        padding: 8px;
+    }
+}

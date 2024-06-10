@@ -1,3 +1,5 @@
-Comenzar a realizar compras desde la página de detalles de producto, no sólo desde el caarrito de compras
 Comenzar con diseño responsivo
-
+Revisar vista checkout sucess, no se renderiza
+Eliminar fotos cuando se sustituyan
+Comentar código
+Mover archivos a subcarpetas, por ejemplo vistas a main, users, products, etc

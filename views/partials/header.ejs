@@ -1,4 +1,8 @@
 <header>
+    <div class="navBarRight">
+        <li class="navBars" style="list-style: none;"><a href="#" class="aBurgerButton"><i class="fa-solid fa-bars"></i></a></li>
+    </div>
+
     <nav class="navHeader">
         <ul>
             <li class="navItem"><a href="/products?category=Smartphones">Smartphones</a></li>
@@ -37,9 +41,7 @@
         </li>
     </div>
 
-    <div class="navBarRight">
-        <li class="navBars"><a href="#" class="aBurgerButton"><i class="fa-solid fa-bars"></i></a></li>
-    </div>
+   
 
     <div class="searchBar" id="searchBar">
         <form id="searchForm" action="/products/search" method="get">
@@ -48,8 +50,23 @@
             <button type="button" id="closeSearch"><i class="fa-solid fa-times"></i></button>
         </form>
     </div>
+
+  
 </header>
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const burgerButton = document.querySelector('.aBurgerButton');
+    const navHeader = document.querySelector('.navHeader');
+    const logo = document.querySelector('.logo');
 
+    burgerButton.addEventListener('click', () => {
+        navHeader.classList.toggle('active');
+        logo.classList.toggle('active');
+    });
+});
+
+</script>
 
 <script src="/js/searchBar.js"></script>
+<!-- <script src="/js/burgerButton.js"></script> -->

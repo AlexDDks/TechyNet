@@ -52,6 +52,7 @@ header nav ul li:hover::after {
     width: 100%;
 }
 
+
 header a {
     color: rgb(245, 245, 245);
     text-decoration: none;
@@ -135,9 +136,7 @@ header a {
     background-color: rgb(170, 170, 170);
 }
 
-.navBarRight {
-    display: none;
-}
+
 
 /* Estilizado de la barra de búsqueda */
 .searchBar {
@@ -189,4 +188,86 @@ header a {
     padding: 10px;
     cursor: pointer;
     font-size: 16px;
+}
+
+.navBarRight {
+    display: none;
+}
+
+@media(max-width:768px){
+
+    i{
+        font-size: 20px;
+    }
+
+    .navBarRight {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+ 
+    .navBarRight i{
+        font-size: 20px;
+    }
+    
+    .navBarCenter{
+        right: 50px;
+    }
+
+    .logo{
+        margin-left: 50px;
+    }
+
+
+    .navHeader{
+        width: 100%;
+        margin-top: 200px;
+        display: none;
+        height: auto;
+        z-index: 100;
+    }
+
+    .navHeader.active{
+        display: block;
+    }
+
+    .navHeader ul{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navHeader ul li{
+       width: 100%;
+       background-color:rgb(18, 18, 18);
+       border-radius:0px;
+       text-align: center;
+       transition: all 250ms;
+    }
+
+    .navHeader ul li:hover{
+        background-color: rgb(170, 170, 170);
+    }
+
+     header nav ul li:hover::after {
+    width: 0%;
+    }
+}
+
+
+@media(max-width:480px){
+
+    i{
+        font-size: 16px;
+    }
+   
+    .navBarCenter{
+        right: 10px;
+    }
+
+    .logo{
+        width: 80px;
+        margin-left: 10px;
+    }
 }

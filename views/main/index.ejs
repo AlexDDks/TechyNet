@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/fa36d49c1a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/main/index.css">
     <link rel="stylesheet" href="/styles/sliderBottom.css">
     <link rel="stylesheet" href="/styles/footer.css">
 
@@ -16,7 +16,7 @@
     <title>Ecommerce</title>
 </head>
 <body>
-    <%- include('partials/header.ejs') %>
+    <%- include('../partials/header.ejs') %>
 
     <section class="sectionTop">
         <article class="articleLeft">
@@ -35,8 +35,8 @@
         </article>
     </section>
 
-    <%- include('partials/slider.ejs') %>
-    <%- include('partials/sliderBottom.ejs') %>
+    <%- include('../partials/slider.ejs') %>
+    <%- include('../partials/sliderBottom.ejs') %>
 
     <section class="sectionMiddle">
         <article>
@@ -56,12 +56,12 @@
         </article>
 
         <article class="articleRightBottom">
-            <a href=""><div><img src="/img/news1.jpg" alt=""></div></a>
+            <a href=""><div class="articleRightBottom Img1"><img src="/img/news1.jpg" alt=""></div></a>
             <a href=""><div><img src="/img/news2.jpg" alt=""></div></a>
         </article>
     </section>
 
-    <%- include('partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script src="/js/slider.js"></script>

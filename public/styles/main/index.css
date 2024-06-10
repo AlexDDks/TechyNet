@@ -8,13 +8,14 @@
 body{
   background-color: rgb(245, 245, 245);
   color: rgb(18, 18, 18);
+
 }
 
 .sectionTop{
-    width: 1100px;
-    display: flex;
-    justify-content: space-between;
-    margin: 100px auto 0 auto;
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  margin: 100px auto 0 auto;
 
 }
 
@@ -48,7 +49,7 @@ section .articleRight a{
 
 .divTechyBot img{
   width: 100%;
-  border-radius: 25px;
+  border-radius: 50%;
   transition: all 250ms;
 }
 
@@ -101,11 +102,9 @@ swiper-container {
   swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px rgb(18, 18, 18) solid;
     
 
 }
@@ -120,7 +119,7 @@ swiper-container {
 
   /* SECTION MIDDLE */
   .sectionMiddle article{
-    width: 1000px;
+    width: 75%;
     margin: 100px auto 0 auto;
     display: flex;
     align-items: center;
@@ -184,3 +183,173 @@ swiper-container {
         text-align: center;
     }
 
+@media(max-width:768px){
+  section .articleRight{
+    justify-content: space-evenly;
+}
+
+.sectionTop {
+  width: 90%;
+  margin: 50px auto 0 auto;
+  flex-direction: column;
+}
+
+section .articleLeft {
+  width: 100%;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+section .articleRight {
+  width: 100%;
+  font-size: 20px;
+}
+
+section .articleRight .divTechyBot {
+  width: 60px;
+  margin-top: 10px;
+}
+
+/* SLIDER TOP */
+.slider {
+  margin-top: 50px;
+  height: 50vh;
+}
+
+/* SLIDER BOTTOM */
+swiper-slide {
+  font-size: 14px;
+}
+
+/* SECTION MIDDLE */
+.sectionMiddle article {
+  width: 90%;
+  margin: 50px auto 0 auto;
+  flex-direction: column;
+}
+
+.sectionMiddle .paragraphMiddle {
+  font-size: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.sectionMiddle .imgMiddle {
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* SECTION BOTTOM */
+.sectionBottom {
+  margin-top: 50px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionBottom .articleLeftBottom {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.sectionBottom .articleRightBottom {
+  width: 100%;
+}
+
+.articleRightBottom.Img1{
+  margin-bottom: 20px;
+}
+.sectionBottom .articleRightBottom img {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.sectionBottom h2 {
+  font-size: 24px;
+}
+}
+ 
+@media (max-width: 468px) {
+  .sectionTop {
+    width: 100%;
+    margin: 20px auto 0 auto;
+    flex-direction: column;
+  }
+
+  section .articleLeft {
+    width: 100%;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  section .articleRight {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  section .articleRight .divTechyBot {
+    width: 40px;
+    margin-top: 5px;
+  }
+
+  /* SLIDER TOP */
+  .slider {
+    margin-top: 20px;
+    height: 30vh;
+  }
+
+  /* SLIDER BOTTOM */
+  swiper-container {
+    width: 90%;
+    height: 100px;
+    margin: 20px auto 0 auto;
+  }
+
+  swiper-slide {
+    font-size: 12px;
+  }
+
+  /* SECTION MIDDLE */
+  .sectionMiddle article {
+    width: 100%;
+    margin: 20px auto 0 auto;
+    flex-direction: column;
+  }
+
+  .sectionMiddle .paragraphMiddle {
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .sectionMiddle .imgMiddle {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  /* SECTION BOTTOM */
+  .sectionBottom {
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sectionBottom .articleLeftBottom {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .sectionBottom .articleRightBottom {
+    width: 100%;
+  }
+
+  .sectionBottom .articleRightBottom img {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .sectionBottom h2 {
+    font-size: 18px;
+  }
+}
+
+  

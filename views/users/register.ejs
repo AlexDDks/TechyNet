@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/register.css">
+    <link rel="stylesheet" href="/styles/users/register.css">
     <link rel="stylesheet" href="/styles/footer.css">
     <script src="https://kit.fontawesome.com/fa36d49c1a.js" crossorigin="anonymous"></script>
     <title>Register</title>
 </head>
 <body>
-    <%- include('partials/header.ejs')%>
+    <%- include('../partials/header.ejs')%>
 
     <div class="mainContainer">
         <form action="/users/register" method="post" class="formLogin" enctype="multipart/form-data">
@@ -77,6 +77,6 @@
         </form>
     </div>
 
-    <%- include('partials/footer.ejs')%>
+    <%- include('../partials/footer.ejs')%>
 </body>
 </html>

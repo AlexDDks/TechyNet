@@ -21,12 +21,18 @@ body {
     padding-top: 90px; /* Altura del header */
 }
 
+.formFather{
+    width: 80%;
+    margin: auto;
+}
+
 .formContent {
+    width: 100%;
     background-color: rgb(40, 40, 40);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    width: 900px;
     padding: 20px;
+    margin: auto;
 }
 
 h2 {
@@ -165,4 +171,85 @@ label {
 /* Estilos adicionales para el modal */
 #modalDelete {
     display: none;
+}
+
+@media (max-width: 768px) {
+    .mainContainer {
+        padding-top: 70px;
+    }
+
+    .formContent {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .divForm {
+        flex-direction: column;
+    }
+
+    .inputGroup {
+        width: 100%;
+    }
+
+    button, .divForm.delete {
+        width: 42%;
+        margin: auto;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    
+.modalDelete {
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+
+}
+
+.modalDelete button{
+    width: 100%;
+}
+
+.modalDelete .labelCloseModalDelete{
+    width: 20%;
+}
+
+}
+
+@media (max-width: 468px) {
+    .mainContainer {
+        padding-top: 50px;
+    }
+
+    .formContent {
+        padding: 10px;
+    }
+
+    .boton {
+        width: 100%;
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .labelOpenModalDelete,
+    .labelCloseModalDelete {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .modalDelete {
+        padding: 20px;
+    }
+
+    
+    .buttonDelete {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
 }

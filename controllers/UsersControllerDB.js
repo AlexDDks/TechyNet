@@ -15,7 +15,7 @@ const controller = {
           res.redirect("/users/profile/"+ emailName[0]) //As the user is logged, we sent him/her to its profile with his/hers information
      }
      else{
-        res.render("login") //If the user is not logged, the view login is rendered
+        res.render("users/login") //If the user is not logged, the view login is rendered
      }
      },
 
@@ -23,7 +23,7 @@ const controller = {
         const resultValidation = validationResult(req);
         if (!resultValidation.isEmpty()) {
             // Hay errores en las validaciones del formulario
-            return res.render("login", {errors: resultValidation.mapped()});
+            return res.render("users/login", {errors: resultValidation.mapped()});
         }
     
         try {
@@ -31,7 +31,7 @@ const controller = {
     
             if (!user) {
                 // El usuario no existe
-                return res.render("login", {errors: {validationUser: {msg: "The user doesn't exist"}}});
+                return res.render("users/login", {errors: {validationUser: {msg: "The user doesn't exist"}}});
             }
     
             // El usuario existe, verificar contraseña
@@ -45,7 +45,7 @@ const controller = {
                 return res.redirect("/");
             } else {
                 // La contraseña no es correcta
-                return res.render("login", {errors: {validationPassword: {msg: "Wrong password"}}, old: req.body});
+                return res.render("users/login", {errors: {validationPassword: {msg: "Wrong password"}}, old: req.body});
             }
         } catch (error) {
             console.error(error);
@@ -54,7 +54,7 @@ const controller = {
     },
 
     register: (req, res) =>{
-      res.render("register")
+      res.render("users/register")
     },
     
     // Método para renderizar la vista de solicitud de restablecimiento de contraseña
@@ -169,7 +169,7 @@ if (email === 'magarciaa92@gmail.com') {
 processRegister: async (req, res) => {
      const resultValidation = validationResult(req);
      if (!resultValidation.isEmpty()) {
-         return res.render("register", { 
+         return res.render("users/register", { 
              errors: resultValidation.mapped(), 
              old: req.body 
          });
@@ -178,13 +178,13 @@ processRegister: async (req, res) => {
          // Verificar si el usuario ya existe
          const userExist = await db.User.findOne({ where: { email: req.body.email } });
          if (userExist) {
-             return res.render("register", { 
+             return res.render("users/register", { 
                  errors: { validationUserExist: { msg: "The user already exists" } }
              });
          }
          // Verificar si las contraseñas coinciden
          if (req.body.password !== req.body.passwordRep) {
-             return res.render("register", { 
+             return res.render("users/register", { 
                  errors: { validationPassword: { msg: "The passwords do not match" } }, 
                  old: req.body 
              });
@@ -270,7 +270,7 @@ profile: async (req, res) => {
         }))
       })) : [];
 
-      res.render('profile', {
+      res.render("users/profile", {
         user: req.session.user,
         cart: cartItems,
         purchaseHistory
@@ -280,7 +280,7 @@ profile: async (req, res) => {
       res.status(500).send('Internal Server Error');
     }
   } else {
-    res.redirect('/users/login');
+    res.redirect("/users/login");
   }
 },
 
@@ -288,7 +288,7 @@ profile: async (req, res) => {
 edit: async (req, res) => {//This method only render the view detail and sends a form with the   information of one product
      const id = req.params.id//We obtain the id of the product from the URL, remember that the id is sends by the view, because when the user clicks a product, it itself has an id, and each product has the label a, which includes the parametrized path with the id. Something like: <a href="/products/edit/<%= product.id %>">
      const user = await db.User.findByPk(id)//The find() method returns the first element in the array of products(DB) that satisfies the provided testing function (the id) i.e. the variable "element" iterates in each element of the array and returns the first product that match with the id that is required in the URL and saves it into the const "product"
-     res.render("editUser", { user })//We render the view and send all necesary information by the const product
+     res.render("users/editUser", { user })//We render the view and send all necesary information by the const product
 },
  
 update: async (req, res) => {
@@ -301,7 +301,7 @@ update: async (req, res) => {
 
   const resultValidation = validationResult(req);
   if (!resultValidation.isEmpty()) {
-    return res.render("editUser", {
+    return res.render("users/editUser", {
       errors: resultValidation.mapped(),
       user,
       old: req.body
@@ -320,7 +320,7 @@ update: async (req, res) => {
   if (req.body.email && req.body.email !== user.email) {
     const emailExists = await db.User.findOne({ where: { email: req.body.email, id: { [Op.ne]: id } } });
     if (emailExists) {
-      return res.render("editUser", {
+      return res.render("users/editUser", {
         errors: { email: { msg: "The email is already in use." } },
         user,
         old: req.body

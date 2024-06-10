@@ -5,16 +5,12 @@ const controller = {
 
    // All the views are rendered here, as well as if some mathematical/logical operations are required, here is where the magic is done 
    index: (req,res) => { //This one just render a view
-        res.render("index")
-   },
-
-   socialMedia: (req,res) => {//This one just render a view
-      res.render("socialMedia")
+        res.render("main/index")
    },
 
    contact: (req, res) => {
       res.locals.success = req.query.success === 'true';
-      res.render("contact");
+      res.render("main/contact");
     },
   
     contactProcessing: async (req, res) => {
@@ -39,19 +35,7 @@ const controller = {
         console.error('Error processing contact form:', error);
         res.status(500).send('Internal Server Error');
       }
-    },
-  
-   personalContact:(req,res) => {//This one just render a view
-      res.render("personalContact")
-   },
-
-   pruebas:(req,res) => {//This one just render a view
-      res.render("pruebas")
-   },
-
-   map:(req,res) => {//This one just render a view
-      res.render("map")
-   }
+    }
 }
 
 module.exports=controller
