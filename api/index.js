@@ -2,8 +2,8 @@ const express = require("express"); // We require from Node the "express" framew
 const app = express(); // We invoke the variable express and save the funcionality of it in the const app
 const path = require("path"); // We require from Node the native module path
 const publicPath = path.join(__dirname, "public"); // We save the funcionality of the method resolve in publicPath in order to have a public folder. We just have created an absolute path which will be used for the method static of express. It recieves the parameters of the route. We could just put in the arguments that the folder is PUBLIC, but in another PC, the absolute route could be different, for that reason we use the string DIRNAME, so we can reach the public folder in an absolute enviroment. __dirname is a variable that give to us the name of the folder where we are, so with __dirname, "public", we create a path that ends in the folder "public".
-const globalConstants = require("./const/globalConstants") //We require the module globalConstants which saves information to conect with the DB
-const db = require("./database/models") //We require the module globalConstants which saves information to conect with the DB
+const globalConstants = require("../const/globalConstants") //We require the module globalConstants which saves information to conect with the DB
+const db = require("../database/models") //We require the module globalConstants which saves information to conect with the DB
 
 
 const session = require("express-session")//We require this module and save all its functionallity in this constant. The sessions variables are globals and I am using those in the views, where I need to share information of a logged user, for example.
@@ -16,11 +16,11 @@ app.use(express.static(publicPath)) // Using the method static we tell to expres
 const cookieParser = require('cookie-parser')//We require this module and save all its functionallity in this constant
 app.use(cookieParser()); // This is a native module, that allows us to use cookies.
 
-const rememberMiddleware = require("./middlewares/rememberMiddleware")
+const rememberMiddleware = require("../middlewares/rememberMiddleware")
 app.use(rememberMiddleware) //The middleware of cookie is gonna be executed every time, in every req,res.
 
 //User
-const localsUser = require("./middlewares/localsUser")
+const localsUser = require("../middlewares/localsUser")
 app.use(localsUser)//The middleware of user is gonna be executed every time, in every req,res.
 
 // View engine
@@ -35,10 +35,10 @@ const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 // Routes
-const mainRouter = require("./routes/mainRouter")
-const usersRouter = require("./routes/usersRouter")
-const productsRouter = require("./routes/productsRouter")
-const cartRouter = require("./routes/cartRouter");
+const mainRouter = require("../routes/mainRouter")
+const usersRouter = require("../routes/usersRouter")
+const productsRouter = require("../routes/productsRouter")
+const cartRouter = require("../routes/cartRouter");
 
 // const servicesRouter = require("./routes/servicesRouter")
 
