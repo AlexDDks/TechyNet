@@ -10,7 +10,8 @@ require('dotenv').config(); // Cargar las variables de entorno
 const controller = {
    login: (req,res) => {
      if (req.session.user) {//If the log in view is visited, but the req.session.user exists is because the user is already logged and the req.session.user variable has not been deleted
-          let loggedUser =req.session.user//The information in the global variable now has been save in this new variable in order of obtain information to parameterize the path to be redirected
+      console.log(req.session.user);    
+      let loggedUser =req.session.user//The information in the global variable now has been save in this new variable in order of obtain information to parameterize the path to be redirected
           let emailName = loggedUser.email.split('@')//The split() method takes a pattern and divides a String into an ordered list of substrings by searching for the pattern, puts these substrings into an array, and returns the array. In this case we will have an array of two index ["nameOfTheEMail", "gmail.com"], because we have split taking the @ as separator.
           res.redirect("/users/profile/"+ emailName[0]) //As the user is logged, we sent him/her to its profile with his/hers information
      }

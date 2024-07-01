@@ -1,5 +1,3 @@
-Comenzar con diseño responsivo
-Revisar vista checkout sucess, no se renderiza
-Eliminar fotos cuando se sustituyan
+Hacer validaciones para el contact de la página main
+Poder eliminar registro de compras en página de perfil
 Comentar código
-Mover archivos a subcarpetas, por ejemplo vistas a main, users, products, etc
