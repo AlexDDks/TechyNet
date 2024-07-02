@@ -1,3 +1,1 @@
-Hacer validaciones para el contact de la página main
-Poder eliminar registro de compras en página de perfil
-Comentar código
+hubo un cambio
