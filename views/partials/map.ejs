@@ -1,0 +1,38 @@
+<div id="map", class="map">
+
+</div>
+
+<style>
+.map{
+    width: 100%;
+    margin-top: 10px;
+    height: 35vh;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0px;
+}
+</style>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_API_KEY %>">
+</script>
+
+<script>
+const coord ={lat: 19.432947, lng:-99.133349}
+const mapDiv = document.getElementById("map");
+let map
+let marker
+function initMap() {
+    map = new google.maps.Map(mapDiv, {
+        center: coord,
+        zoom: 9,
+    });
+
+marker = new google.maps.Marker({
+    position: coord,
+    map: map
+})
+}
+</script>
+
+
+

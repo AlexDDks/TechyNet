@@ -1,0 +1,265 @@
+/* contact.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: rgb(245, 245, 245);
+    color: rgb(18, 18, 18);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.sectionAddress {
+    width: 100%;
+    max-width: 1400px;
+    margin: 100px auto 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    color: rgb(18, 18, 18);
+}
+
+.sectionAddress .divAddress,
+.sectionAddress .divDirectLine {
+    width: 45%;
+    font-size: 18px;
+    color: rgba(18, 18, 18, 0.8);
+    text-align: center;
+}
+
+.sectionAddress .divAddress .fa-location-dot {
+    color: red;
+    font-size: 20px;
+}
+
+.divMT {
+    margin: 10px 0 5px 0;
+}
+
+.h3FollowUs {
+    color: rgba(18, 18, 18, 0.9);
+    margin-top: 20px;
+    font-size: 27px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.divSocialMedia {
+    width: 300px;
+    margin: 20px auto 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 30px;
+}
+
+.ulSocialMedia{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.ulSocialMedia li {
+    list-style: none;
+}
+
+/* Hovers social media icons */
+.ulSocialMedia .fa-facebook {
+    color: rgba(66, 103, 178, 0.8);
+}
+
+.ulSocialMedia .fa-twitter {
+    color: rgba(29, 161, 242, 0.8);
+}
+
+.ulSocialMedia .fa-linkedin {
+    color: rgba(0, 119, 181, 0.8);
+}
+
+.ulSocialMedia .fa-youtube {
+    color: rgba(255, 0, 0, 0.8);
+}
+
+.ulSocialMedia .fa-facebook:hover {
+    color: rgb(66, 103, 178);
+}
+
+.ulSocialMedia .fa-twitter:hover {
+    color: rgb(29, 161, 242);
+}
+
+.ulSocialMedia .fa-linkedin:hover {
+    color: rgb(0, 119, 181);
+}
+
+.ulSocialMedia .fa-youtube:hover {
+    color: rgb(255, 0, 0);
+}
+
+.sectionAddress .pAddress,
+.sectionAddress .pDirectLine {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.pDirectLine {
+    margin-bottom: 15px;
+}
+
+.sectionAddress .divDirectLine .pNum {
+    color: rgb(8, 105, 250);
+    font-weight: 750;
+    padding: 5px 0;
+}
+
+.sectionAddress .divDirectLine .fa-whatsapp {
+    color: rgb(18, 140, 126);
+    font-size: 22px;
+}
+
+.contactFormContainer {
+    background-color: rgb(40, 40, 40);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1400px;
+    color: rgb(245, 245, 245);
+    margin: 50px auto;
+}
+
+.contactFormContainer h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;     
+}
+
+.formGroup {
+    width: 45%;
+    margin-bottom: 15px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formGroup input,
+.formGroup textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 4px;
+    background-color: rgb(18, 18, 18);
+    color: rgb(245, 245, 245);
+}
+
+button {
+    background-color: rgb(245, 245, 245);
+    color: rgb(18, 18, 18);
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 30%;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+
+.alertSuccess {
+    padding: 20px;
+    background-color: rgb(76, 175, 80); 
+    color: white;
+    margin-bottom: 15px;
+}
+
+.alertSuccess .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.alertSuccess .closebtn:hover {
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .sectionAddress {
+        margin-top: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sectionAddress .divAddress,
+    .sectionAddress .divDirectLine {
+        width: 80%;
+        margin-top: 40px;
+        font-size: 16px;
+    }
+
+    .h3FollowUs {
+        font-size: 24px;
+    }
+
+    .divSocialMedia {
+        width: 80%;
+        font-size: 24px;
+    }
+
+    .contactFormContainer {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .formGroup {
+        width: 100%;
+    }
+
+    button {
+        width: 50%;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 468px) {
+    .sectionAddress .divAddress,
+    .sectionAddress .divDirectLine {
+        width: 90%;
+        font-size: 14px;
+    }
+
+    .h3FollowUs {
+        font-size: 22px;
+    }
+
+    .divSocialMedia {
+        width: 90%;
+        font-size: 20px;
+    }
+
+    .contactFormContainer {
+        padding: 10px;
+    }
+
+    button {
+        width: 70%;
+    }
+}

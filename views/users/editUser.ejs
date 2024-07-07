@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/users/editUser.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <script src="https://kit.fontawesome.com/fa36d49c1a.js" crossorigin="anonymous"></script>
+    <title>Edit User</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs')%>
+
+    <div class="mainContainer">
+        <form action="/users/edit/<%= user.id %>?_method=PUT" method="post" class="formLogin" enctype="multipart/form-data">
+            <div class="formContent">
+                <h2>Edit Your Profile</h2>
+                <div class="divForm">
+                    <input class="barra" type="text" name="name" placeholder="Name" value="<%= locals.old && old.name ? old.name : user.name %>">
+                    <div class="errorMsg">
+                        <% if (locals.errors && errors.name) { %>
+                            <p class="error"><%= errors.name.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="divForm">
+                    <input class="barra" type="text" name="email" placeholder="Email" value="<%= locals.old && old.email ? old.email : user.email %>">
+                    <div class="errorMsg">
+                        <% if (locals.errors && errors.email) { %>
+                            <p class="error"><%= errors.email.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                        <% } %>
+                        <% if (locals.errors && errors.validationUserExist) { %>
+                            <p class="error"><%= errors.validationUserExist.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="divForm">
+                    <input class="barra" type="password" name="password" placeholder="New Password">
+                    <div class="errorMsg">
+                        <% if (locals.errors && errors.password) { %>
+                            <p class="error"><%= errors.password.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                        <% } %>
+                        <% if (locals.errors && errors.validationPassword) { %>
+                            <p class="error"><%= errors.validationPassword.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="divForm">
+                    <input class="barra" type="password" name="passwordRep" placeholder="Repeat Password">
+                    <div class="errorMsg">
+                        <% if (locals.errors && errors.passwordRep) { %> 
+                            <p class="error"><%= errors.passwordRep.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                        <% } %>
+                        <% if (locals.errors && errors.validationPassword) { %>
+                            <p class="error"><%= errors.validationPassword.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="divInputImg">
+                    <label for="imageUrl" class="labelFile">Profile Image: (.jpg, .png, .gif, .jpeg)</label>
+                    <input type="file" class="inputFile" name="imageUrl">
+                    <div class="errorMsg">
+                        <% if (locals.errors && errors.imageUrl) { %>
+                            <p class="error"><%= errors.imageUrl.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="divForm">
+                    <a class="login" href="/users/profile/<%= user.id %>">Return to Profile</a>
+                </div>
+                <div class="divForm">
+                    <button class="boton" type="submit">Save Changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

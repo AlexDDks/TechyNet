@@ -1,0 +1,72 @@
+<header>
+    <div class="navBarRight">
+        <li class="navBars" style="list-style: none;"><a href="#" class="aBurgerButton"><i class="fa-solid fa-bars"></i></a></li>
+    </div>
+
+    <nav class="navHeader">
+        <ul>
+            <li class="navItem"><a href="/products?category=Smartphones">Smartphones</a></li>
+            <li class="navItem"><a href="/products?category=Computing">Computing</a></li>
+            <li class="navItem"><a href="/products?category=Blogging">Blogging</a></li>
+            <li class="navItem"><a href="/products?category=Gaming">Gaming</a></li>
+            <li class="navItem"><a href="/products?category=Accessories">Accesories</a></li>
+        </ul>
+    </nav>
+
+    <div class="logo">
+        <a href="/"><img src="/img/logoWhite.png" alt="logo"></a>
+    </div>
+
+    <div class="navBarCenter">
+        <% if (locals.user) { %>
+            <li class="navItem">
+                <div class="divImg">
+                    <a href="/users/login"><img class="imgProfile" src="/img/users/<%=user.imageUrl%>" alt=""></a>
+                </div>
+                <ul class="verticalMenu">
+                    <li class="itemVerMenu"><a href="/users/login">My profile</a></li>
+                    <li class="itemVerMenu"><a href="/users/logout">Log out</a></li>
+                </ul>
+            </li>
+        <% } else { %>
+            <li class="navItem">
+                <a href="/users/login"><i class="fa-solid fa-user"></i></a>
+            </li>
+        <% } %>
+        <li class="navItem">
+            <a href="#" id="searchIcon"><i class="fa-solid fa-magnifying-glass"></i></a>
+        </li>
+        <li class="navItem">
+            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        </li>
+    </div>
+
+   
+
+    <div class="searchBar" id="searchBar">
+        <form id="searchForm" action="/products/search" method="get">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit"><i class="fa-solid fa-search"></i></button>
+            <button type="button" id="closeSearch"><i class="fa-solid fa-times"></i></button>
+        </form>
+    </div>
+
+  
+</header>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const burgerButton = document.querySelector('.aBurgerButton');
+    const navHeader = document.querySelector('.navHeader');
+    const logo = document.querySelector('.logo');
+
+    burgerButton.addEventListener('click', () => {
+        navHeader.classList.toggle('active');
+        logo.classList.toggle('active');
+    });
+});
+
+</script>
+
+<script src="/js/searchBar.js"></script>
+<!-- <script src="/js/burgerButton.js"></script> -->

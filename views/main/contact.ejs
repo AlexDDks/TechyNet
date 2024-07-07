@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/main/contact.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <script src="https://kit.fontawesome.com/fa36d49c1a.js" crossorigin="anonymous"></script>
+    <title>Contact Us</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+
+    
+    <% if (locals.success) { %>
+        <div class="alertSuccess">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Your message has been sent successfully!
+        </div>
+    <% } %>
+
+    <section class="sectionAddress">
+        <div class="divAddress">
+            <p class="pAddress">Address</p>
+            <i class="fa-solid fa-location-dot"></i><span> C. Reforma 25, Centro Histórico 16215, CDMX</span>
+            <%- include('../partials/map.ejs') %>  
+        </div>        
+        
+        <div class="divDirectLine">
+            <p class="pDirectLine">Direct line</p>
+            <p class="pNum"><i class="fa-solid fa-phone"></i> +52 XX XXXX XXXX</p>
+            <p class="pNum"><i class="fa-brands fa-whatsapp"></i> +52 XX XXXX XXXX</p>
+    
+            <div class="divMT">
+                <span class="span">Monday to Saturday </span><span class="pNum">8:00 AM to 10:00 PM</span>
+            </div>
+            <span>Saturday and sunday </span><span class="pNum">9:00 AM to 9:00 PM</span>
+    
+            <h3 class="h3FollowUs">Follow us!</h3>
+            <article class="divSocialMedia">
+                <ul class="ulSocialMedia">
+                    <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                </ul>
+            </article>
+        </div> 
+    </section>
+
+    <div class="contactFormContainer">
+        <h2>Contact Us</h2>
+        <form id="contactForm" action="/contact" method="post">
+            <div class="formGroup">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="formGroup">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="formGroup">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="formGroup">
+                <label for="comments">Comments or Requests:</label>
+                <textarea id="comments" name="comments" rows="4" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

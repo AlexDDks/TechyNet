@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <link rel="stylesheet" href="/styles/products/checkoutSuccess.css">
+    <title>Checkout Success</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+
+    <section class="checkoutSuccess">
+        <h1>Purchase Successful!</h1>
+        <p>Thank you for your purchase. Your order has been successfully processed.</p>
+        <a href="/users/profile" class="button">Back to Profile</a>
+    </section>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: rgb(245, 245, 245);
+    color: rgb(245, 245, 245);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.mainContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 90px; /* Altura del header */
+}
+
+.formLogin {
+    width: 400px;
+    height: auto;
+    background-color: rgb(40, 40, 40);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    color: rgb(245, 245, 245);
+    margin-bottom: 20px;
+}
+
+.divForm {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input.barra {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 4px;
+    background-color: rgb(18, 18, 18);
+    color: rgb(245, 245, 245);
+}
+
+.barra::placeholder {
+    color: rgb(245, 245, 245);
+}
+
+.errorMsg {
+    color: rgb(255, 100, 100);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox {
+    margin-right: 10px;
+}
+
+.reestablecerContrasena, .spanRegister, .register {
+    color: rgb(245, 245, 245);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.reestablecerContrasena:hover, .register:hover {
+    text-decoration: underline;
+}
+
+.boton {
+    background-color: rgb(245, 245, 245);
+    color: rgb(18, 18, 18);
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.boton:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+@media (max-width: 768px) {
+    .mainContainer {
+        padding-top: 70px;
+    }
+
+    .formLogin {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .boton {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 468px) {
+    .mainContainer {
+        padding-top: 50px;
+    }
+
+    .formLogin {
+        padding: 10px;
+    }
+
+    .boton {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+

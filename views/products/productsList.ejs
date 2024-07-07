@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/products/productsList.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <script src="https://kit.fontawesome.com/fa36d49c1a.js" crossorigin="anonymous"></script>
+    <title>Products</title>
+</head>
+<body>
+  <%- include('../partials/header.ejs') %>
+
+  <div class="categorySelectContainer">
+      <select class="categorySelect" onchange="location = this.value;">
+          <option value="/products" <%= category === 'All categories' ? 'selected' : '' %>>All categories</option>
+          <option value="/products?category=Smartphones" <%= category === 'Smartphones' ? 'selected' : '' %>>Smartphones</option>
+          <option value="/products?category=Computing" <%= category === 'Computing' ? 'selected' : '' %>>Computing</option>
+          <option value="/products?category=Blogging" <%= category === 'Blogging' ? 'selected' : '' %>>Blogging</option>
+          <option value="/products?category=Gaming" <%= category === 'Gaming' ? 'selected' : '' %>>Gaming</option>
+          <option value="/products?category=Accessories" <%= category === 'Accessories' ? 'selected' : '' %>>Accessories</option>
+          <% if (query) { %>
+              <option value="#" selected>Personalized Categories</option>
+          <% } %>
+      </select>
+  </div>
+
+  <div class="createProduct">
+    <a href="/products/create">Create a product</a>
+  </div>
+
+  <% if (query) { %>
+    <div class="searchResultsHeader">
+      <% if (Products.length > 0) { %>
+        <h2>Results for: <%= query %></h2>
+      <% } else { %>
+        <h2>No results found for: <%= query %>, Please try with another word</h2>
+      <% } %>
+    </div>
+  <% } %>
+
+  <section class="products">
+    <% for (const product of Products) { %>
+      <article class="productBox">
+        <a href="/products/detail/<%= product.id %>">
+          <div class="divProducts">
+            <img src="/img/products/selectProducts/<%= product.imageUrl %>" alt="<%= product.name %>">
+          </div>
+          <div class="divClass">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+          <div class="productInfo">
+            <h2>$<%= product.price %></h2>
+            <% if (product.discount) { %>
+              <span>Discount <%= product.discount %>%</span>
+            <% } %>
+            <p class="pName"><%= product.name %></p>
+            <p class="pDescription"><%= product.description %></p>
+          </div>
+        </a>
+      </article>
+    <% } %>
+  </section>
+
+  <%- include('../partials/footer.ejs') %>
+</body>
+</html>

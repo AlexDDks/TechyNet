@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.name %> - Detail</title>
+    <script src="https://kit.fontawesome.com/fa36d49c1a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/products/productsDetail.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+
+    <section class="mainSection">
+        <article class="article">
+            <div class="divImage">
+                <img src="/img/products/selectProducts/<%= product.imageUrl %>" alt="<%= product.name %>">
+            </div>
+            <div class="productInfo">
+                <h1 class="pName"><%= product.name %></h1>
+                <div class="price">
+                    <% if (product.discount) { %>
+                        <span class="spanDoNotPay">Do not pay:</span>
+                        <span class="spanPrice">$<%= product.price %></span>
+                        <span class="spanDiscount">Discount: <%= product.discount %>%</span>
+                        <p class="pFinalPrice">Final price: $<%= (product.price * (1 - product.discount / 100)).toFixed(2) %></p>
+                    <% } else { %>
+                        <p class="pFinalPrice">Price: $<%= product.price.toFixed(2) %></p>
+                    <% } %>
+                </div>
+
+                <div class="infoBottom">
+                    <% if (product.monthsInterestFree) { %>
+                        <p><i class="fa-solid fa-credit-card"></i> Up to <%= product.monthsInterestFree %> months interest free</p>
+                    <% } %>
+
+                    <p><i class="fa-solid fa-shop"></i> Pick up in seller's store</p>
+                    <% if (product.stock) { %>
+                        <p>Stock: <%= product.stock %> Units</p>
+                    <% } %>
+                    <p><i class="fa-solid fa-star"></i> Rating: <%= product.rating %> (<%= product.reviewCount %> reviews)</p>
+                </div>
+                
+                <form action="/cart/checkout" method="post">
+                    <input type="hidden" name="productId" value="<%= product.id %>">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="buttonBuy">Buy now</button>
+                </form>
+                
+                <div>
+                    <form action="/cart/add" method="post">
+                        <input type="hidden" name="productId" value="<%= product.id %>">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="shoppingCar">Add to cart</button>
+                    </form>
+                </div>
+                <div class="actionButton">
+                    <div class="divEdit"><a href="/products/edit/<%= product.id %>" class="buttonEdit">Edit Product</a></div>
+                </div>
+                <div class="productDescription">
+                    <%= product.description %>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

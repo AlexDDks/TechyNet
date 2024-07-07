@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/fa36d49c1a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles/users/profile.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <title><%= user.email %></title>
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+
+    <section class="user">
+        <article class="userBox">
+            <div class="divImg">
+                <img src="/img/users/<%= user.imageUrl %>" alt="User Profile Image">
+            </div>
+            <div class="userInfo">
+                <p class="userName"><%= user.name %></p>
+                <p class="userEmail"><%= user.email %></p>
+            </div>
+            <div class="divButtons">
+                <div class="divEdit">
+                    <a href="/users/edit/<%= user.id %>" class="buttonEdit">Edit Profile</a>
+                </div>
+                <%- include('../partials/modalDeleteUser.ejs') %>
+            </div>
+        </article>
+
+        <article class="userHistory">
+            <h2>Purchase History</h2>
+            <ul>
+                <% if (purchaseHistory && purchaseHistory.length > 0) { %>
+                    <% purchaseHistory.forEach(purchase => { %>
+                        <li>
+                            <p>Order ID: <%= purchase.orderId %></p>
+                            <p>Date: <%= purchase.date %></p>
+                            <p>Total: $<%= purchase.total %></p>
+                            <ul>
+                                <% purchase.items.forEach(item => { %>
+                                    <li>
+                                        <p>Product: <%= item.productName %></p>
+                                        <p>Quantity: <%= item.quantity %></p>
+                                        <p>Price: $<%= item.price %></p>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </li>
+                    <% }) %>
+                <% } else { %>
+                    <p>No purchase history available.</p>
+                <% } %>
+            </ul>
+        </article>
+        
+
+        <article class="userCart">
+            <h2>Shopping Cart</h2>
+            <ul>
+                <% if (cart && cart.length > 0) { %>
+                    <% cart.forEach(item => { %>
+                        <li>
+                            <div class="cartItem">
+                                <div class="cartItemImg">
+                                    <img src="/img/products/selectProducts/<%= item.imageUrl %>" alt="<%= item.productName %>">
+                                </div>
+                                <div class="cartItemInfo">
+                                    <p>Product: <%= item.productName %></p>
+                                    <p>Quantity: <%= item.quantity %></p>
+                                    <p>Price: $<%= item.price %></p>
+                                    <form action="/cart/remove/<%= item.productId %>" method="post" style="display:inline;">
+                                        <button type="submit" class="buttonRemove">Remove</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    <% }) %>
+                    <li>
+                        <form action="/cart/checkout" method="post">
+                            <button type="submit" class="buttonBuy">Buy now</button>
+                        </form>
+                    </li>
+                <% } else { %>
+                    <p>Your cart is empty.</p>
+                <% } %>
+            </ul>
+        </article>
+    </section>    
+        
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

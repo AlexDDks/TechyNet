@@ -1,0 +1,352 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family:'Segoe UI';
+}
+
+body{
+  background-color: rgb(245, 245, 245);
+  color: rgb(18, 18, 18);
+}
+
+.user {
+    margin: 100px auto 0 auto;
+    width: 900px;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color:rgb(245, 245, 245) ;
+}
+
+.userBox {
+    background-color: rgb(40, 40, 40);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.divImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+}
+.userBox .divImg img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; 
+    object-position: center; 
+    border: 2px solid rgb(240, 240, 240);
+}
+
+.userBox .userInfo {
+    flex: 1;
+}
+
+.userBox .userName {
+    font-size: 24px;
+    color: rgb(240, 240, 240);
+    margin-bottom: 10px;
+}
+
+.userBox .userEmail {
+    font-size: 16px;
+    color: rgb(200, 200, 200);
+}
+
+.userBox .divButtons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+.userBox .buttonEdit, .userBox .buttonRemove {
+    background-color: rgb(245, 245, 245);
+    color: rgb(18, 18, 18);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.userBox .buttonEdit:hover, .userBox .buttonRemove:hover {
+    background-color: rgb(200, 200, 200);
+}.userHistory, .userCart {
+    background-color: rgb(40, 40, 40);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.userHistory h2, .userCart h2 {
+    color: rgb(245, 245, 245);
+    margin-bottom: 20px;
+}
+
+.userHistory ul, .userCart ul {
+    list-style: none;
+    padding: 0;
+}
+
+.userHistory li, .userCart li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 4px;
+    color: rgb(245, 245, 245);
+}
+
+.userHistory li p, .userCart li p {
+    margin-bottom: 5px;
+}
+
+.cartItem {
+    display: flex;
+    align-items: center;
+}
+
+.cartItemImg {
+    margin-right: 15px;
+}
+
+.cartItemImg img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cartItemInfo {
+    flex-grow: 1;
+}
+
+.userCart .buttonRemove {
+    background-color: rgb(255, 100, 100);
+    color: rgb(245, 245, 245);
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.userCart .buttonRemove:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+.userCart .buttonBuy {
+    background-color: rgb(50, 205, 50);
+    color: rgb(245, 245, 245);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.userCart .buttonBuy:hover {
+    background-color: rgb(34, 139, 34);
+}
+
+
+/* Estilo para el modal de eliminación */
+.modalDelete {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(40, 40, 40);
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 4px;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    text-align: center;
+}
+
+.modalDelete h2 {
+    color: rgb(245, 245, 245);
+    margin-bottom: 20px;
+}
+
+.modalDelete .formDelete .buttonDelete {
+    background-color: rgb(255, 100, 100);
+    color: rgb(245, 245, 245);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.modalDelete .formDelete .buttonDelete:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+input#openModalDelete:checked ~ .modalDelete {
+    display: block;
+}
+
+input#closeModalDelete:checked ~ .modalDelete {
+    display: none;
+}
+
+/* Ocultar los radio inputs */
+input[type="radio"].openModalDelete,
+input[type="radio"].closeModalDelete {
+    display: none;
+}
+
+/* Estilo para los labels de abrir y cerrar el modal */
+.labelOpenModalDelete,
+.labelCloseModalDelete {
+    background-color: rgb(255, 100, 100);
+    color: rgb(245, 245, 245);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.labelOpenModalDelete:hover,
+.labelCloseModalDelete:hover {
+    background-color: rgb(200, 50, 50);
+}
+
+.labelCloseModalDelete {
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .user {
+        width: 90%;
+        margin: 50px auto 0 auto;
+    }
+
+    .userBox {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .divImg {
+        width: 100px;
+        height: 100px;
+    }
+
+    .userBox .userName {
+        font-size: 20px;
+    }
+
+    .userBox .userEmail {
+        font-size: 14px;
+    }
+
+    .userBox .divButtons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .userBox .buttonEdit, .userBox .buttonRemove {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .userHistory, .userCart {
+        padding: 15px;
+    }
+
+    .userHistory h2, .userCart h2 {
+        font-size: 20px;
+    }
+
+    .userHistory li, .userCart li {
+        padding: 8px;
+    }
+
+    .userHistory li p, .userCart li p {
+        font-size: 14px;
+    }
+
+    .cartItemImg img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .userCart .buttonRemove, .userCart .buttonBuy {
+        width: 100%;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 468px) {
+    .user {
+        width: 95%;
+        margin: 30px auto 0 auto;
+    }
+
+    .userBox {
+        gap: 10px;
+    }
+
+    .divImg {
+        width: 80px;
+        height: 80px;
+    }
+
+    .userBox .userName {
+        font-size: 18px;
+    }
+
+    .userBox .userEmail {
+        font-size: 12px;
+    }
+
+    .userBox .buttonEdit, .userBox .buttonRemove {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .userHistory, .userCart {
+        padding: 10px;
+    }
+
+    .userHistory h2, .userCart h2 {
+        font-size: 18px;
+    }
+
+    .userHistory li, .userCart li {
+        padding: 6px;
+    }
+
+    .userHistory li p, .userCart li p {
+        font-size: 12px;
+    }
+
+    .cartItemImg img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .userCart .buttonRemove, .userCart .buttonBuy {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+}

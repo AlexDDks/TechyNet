@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/products/editProduct.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+    <script src="https://kit.fontawesome.com/fa36d49c1a.js" crossorigin="anonymous"></script>
+    <title>Edit Product</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs')%>
+
+    <div class="mainContainer">
+        <form action="/products/edit/<%= product.id %>?_method=PUT" method="post" class="formFather" enctype="multipart/form-data">
+            <div class="formContent">
+                <h2>Edit Product</h2>
+        
+                <div class="divForm">
+                    <div class="inputGroup">
+                        <label for="name">Product Name</label>
+                        <input class="barra" type="text" id="name" name="name" placeholder="Product Name" value="<%= locals.old && old.name ? old.name : product.name %>">
+                        <div class="errorMsg">
+                            <% if (locals.errors && errors.name) { %>
+                                <p class="error"><%= errors.name.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                            <% } %>
+                        </div>
+                    </div>
+        
+                    <div class="inputGroup">
+                        <label for="price">Price</label>
+                        <input class="barra" type="number" step="0.01" id="price" name="price" placeholder="Price" value="<%= locals.old && old.price ? old.price : product.price %>">
+                        <div class="errorMsg">
+                            <% if (locals.errors && errors.price) { %>
+                                <p class="error"><%= errors.price.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="divForm">
+                    <div class="inputGroup">
+                        <label for="discount">Discount</label>
+                        <input class="barra" type="number" step="1" id="discount" name="discount" placeholder="Discount" value="<%= locals.old && old.discount ? old.discount : product.discount %>"  min="0" max="100">
+                        <div class="errorMsg">
+                            <% if (locals.errors && errors.discount) { %>
+                                <p class="error"><%= errors.discount.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                            <% } %>
+                        </div>
+                    </div>
+        
+                    <div class="inputGroup">
+                        <label for="category">Category</label>
+                        <select class="barra" id="category" name="category">
+                            <option value="">Select Category</option>
+                            <option value="Smartphones" <%= product.category === 'Smartphones' ? 'selected' : '' %>>Smartphones</option>
+                            <option value="Computing" <%= product.category === 'Computing' ? 'selected' : '' %>>Computing</option>
+                            <option value="Blogging" <%= product.category === 'Blogging' ? 'selected' : '' %>>Blogging</option>
+                            <option value="Gaming" <%= product.category === 'Gaming' ? 'selected' : '' %>>Gaming</option>
+                            <option value="Accessories" <%= product.category === 'Accessories' ? 'selected' : '' %>>Accessories</option>
+                        </select>
+                        <div class="errorMsg">
+                            <% if (locals.errors && errors.category) { %>
+                                <p class="error"><%= errors.category.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="divForm">
+                    <div class="inputGroup">
+                        <label for="stock">Stock</label>
+                        <input class="barra" type="number" id="stock" name="stock" placeholder="Stock" value="<%= locals.old && old.stock ? old.stock : product.stock %>">
+                        <div class="errorMsg">
+                            <% if (locals.errors && errors.stock) { %>
+                                <p class="error"><%= errors.stock.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                            <% } %>
+                        </div>
+                    </div>
+        
+                    <div class="inputGroup">
+                        <label for="description">Description</label>
+                        <textarea class="barra" id="description" name="description" placeholder="Description"><%= locals.old && old.description ? old.description : product.description %></textarea>
+                        <div class="errorMsg">
+                            <% if (locals.errors && errors.description) { %>
+                                <p class="error"><%= errors.description.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="divForm">
+                    <div class="inputGroup">
+                        <label for="monthsInterestFree">Months Interest Free</label>
+                        <input class="barra" type="number" id="monthsInterestFree" name="monthsInterestFree" placeholder="Months Interest Free" value="<%= locals.old && old.monthsInterestFree ? old.monthsInterestFree : product.monthsInterestFree %>">
+                        <div class="errorMsg">
+                            <% if (locals.errors && errors.monthsInterestFree) { %>
+                                <p class="error"><%= errors.monthsInterestFree.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                            <% } %>
+                        </div>
+                    </div>
+        
+                    <div class="inputGroup">
+                        <label for="rating">Rating</label>
+                        <input class="barra" type="number" step="0.5" id="rating" name="rating" placeholder="Rating" value="<%= locals.old && old.rating ? old.rating : product.rating %>"  min="0" max="5">
+                        <div class="errorMsg">
+                            <% if (locals.errors && errors.rating) { %>
+                                <p class="error"><%= errors.rating.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="divForm">
+                    <div class="inputGroup">
+                        <label for="reviewCount">Review Count</label>
+                        <input class="barra" type="number" id="reviewCount" name="reviewCount" placeholder="Review Count" value="<%= locals.old && old.reviewCount ? old.reviewCount : product.reviewCount %>">
+                        <div class="errorMsg">
+                            <% if (locals.errors && errors.reviewCount) { %>
+                                <p class="error"><%= errors.reviewCount.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                            <% } %>
+                        </div>
+                    </div>
+        
+                    <div class="inputGroup">
+                        <label for="imageUrl">Change Image</label>
+                        <input class="barra inputFile" type="file" id="imageUrl" name="imageUrl">
+                        <div class="errorMsg">
+                            <% if (locals.errors && errors.imageUrl) { %>
+                                <p class="error"><%= errors.imageUrl.msg %><i class="fa-solid fa-circle-exclamation"></i></p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="divForm">
+                    <button class="boton" type="submit">Save Changes</button>
+                </div>
+        
+                <div class="divForm delete">
+                    <input class="openModalDelete" type="radio" name="modalDelete" id="openModalDelete">
+                    <label class="labelOpenModalDelete" for="openModalDelete">Delete</label>
+                </div>
+            </div>
+        </form>
+        
+        
+        
+        
+
+        <div class="modalDelete" id="modalDelete">
+            <h2>Are you sure to delete it?</h2>
+            <form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST" class="formDelete">
+                <button type="submit" class="buttonDelete">Delete</button>
+            </form>
+            <input class="closeModalDelete" type="radio" name="modalDelete" id="closeModalDelete">
+            <label class="labelCloseModalDelete" for="closeModalDelete">Return</label>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const openModalBtn = document.getElementById('openModalDelete');
+                const closeModalBtn = document.getElementById('closeModalDelete');
+                const modal = document.getElementById('modalDelete');
+        
+                openModalBtn.addEventListener('click', function () {
+                    modal.style.display = 'flex';
+                });
+        
+                closeModalBtn.addEventListener('click', function () {
+                    modal.style.display = 'none';
+                });
+            });
+        </script>
+        
+
+    </div>
+
+    <%- include('../partials/footer.ejs')%>
+</body>
+</html>

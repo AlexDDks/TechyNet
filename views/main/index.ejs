@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/fa36d49c1a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/main/index.css">
+    <link rel="stylesheet" href="/styles/sliderBottom.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <title>Ecommerce</title>
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+
+    <section class="sectionTop">
+        <article class="articleLeft">
+            <h1>TechyNet. The best way of obtain what u' deserve.</h1>
+        </article>
+        <article class="articleRight">
+            <div>
+                <p>Do you need some help?</p>
+                <div class="divTechyBot"><a href=""><img src="/img/Techybot.jpg" alt=""></a></div>
+            </div>
+
+            <div>
+                <p>Do you want to <a href="/contact">contact us?</a></p>
+                
+            </div>
+        </article>
+    </section>
+
+    <%- include('../partials/slider.ejs') %>
+    <%- include('../partials/sliderBottom.ejs') %>
+
+    <section class="sectionMiddle">
+        <article>
+            <div class="paragraphMiddle">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Id sint recusandae sed provident expedita dolore ratione iste vero rem dicta incidunt alias repellendus sequi consectetur, temporibus illum vel ut cupiditate.
+            </div>
+
+            <div class="imgMiddle">
+                <a href=""><img src="/img/smart.png" alt=""></a>
+            </div>
+        </article>
+    </section>
+
+    <section class="sectionBottom">
+        <article class="articleLeftBottom">
+            <a href=""><img src="/img/bFriday.png" alt=""></a>
+        </article>
+
+        <article class="articleRightBottom">
+            <a href=""><div><img src="/img/news1.jpg" alt=""></div></a>
+            <a href=""><div><img src="/img/news2.jpg" alt=""></div></a>
+        </article>
+    </section>
+
+    <%- include('../partials/footer.ejs') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="/js/slider.js"></script>
+</body>
+</html>

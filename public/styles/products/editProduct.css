@@ -1,0 +1,259 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: rgb(245, 245, 245);
+    color: rgb(45, 45, 45);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.mainContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 90px; /* Altura del header */
+}
+
+.formFather{
+    width: 80%;
+    margin: auto;
+}
+
+.formContent {
+    width: 100%;
+    background-color: rgb(40, 40, 40);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin: auto;
+}
+
+h2 {
+    color: rgb(245, 245, 245);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.divForm {
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+    justify-content: space-between;
+}
+
+.inputGroup {
+    width: 48%; /* Hacer que cada inputGroup ocupe el 48% del ancho del contenedor */
+    margin-bottom: 15px;
+    position: relative;
+}
+
+input.barra, input.inputFile, select.barra, textarea.barra {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 4px;
+    background-color: rgb(18, 18, 18);
+    color: rgb(245, 245, 245);
+}
+
+input.barra::placeholder, input.inputFile::placeholder, textarea.barra::placeholder {
+    color: rgb(150, 150, 150);
+}
+
+label {
+    color: rgb(245, 245, 245);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.errorMsg {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.error {
+    color: rgb(255, 100, 100);
+    font-size: 0.875em;
+    display: flex;
+    align-items: center;
+}
+
+.error i {
+    margin-left: 5px;
+}
+
+.boton {
+    width: 200px;
+    margin: auto;
+    padding: 10px;
+    background-color: rgb(245, 245, 245);
+    border: none;
+    border-radius: 4px;
+    color: rgb(18, 18, 18);
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+.openModalDelete,
+.closeModalDelete {
+    display: none;
+}
+
+.labelOpenModalDelete,
+.labelCloseModalDelete {
+    cursor: pointer;
+    color: rgb(245, 245, 245);
+    background-color: rgb(100, 100, 100);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: inline-block;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.labelOpenModalDelete:hover,
+.labelCloseModalDelete:hover {
+    background-color: rgb(150, 150, 150);
+}
+
+.modalDelete {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(40, 40, 40);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.modalDelete h2 {
+    color: rgb(245, 245, 245);
+    margin-top: 18px;
+}
+
+.formDelete {
+    text-align: center;
+}
+
+.buttonDelete {
+    background-color: rgb(255, 0, 0);
+    color: rgb(245, 245, 245);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 18px 15px 0 15px;
+}
+
+.buttonDelete:hover {
+    background-color: darkred;
+}
+
+/* Estilos adicionales para el modal */
+#modalDelete {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mainContainer {
+        padding-top: 70px;
+    }
+
+    .formContent {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .divForm {
+        flex-direction: column;
+    }
+
+    .inputGroup {
+        width: 100%;
+    }
+
+    button, .divForm.delete {
+        width: 42%;
+        margin: auto;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    
+.modalDelete {
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+
+}
+
+.modalDelete button{
+    width: 100%;
+}
+
+.modalDelete .labelCloseModalDelete{
+    width: 20%;
+}
+
+}
+
+@media (max-width: 468px) {
+    .mainContainer {
+        padding-top: 50px;
+    }
+
+    .formContent {
+        padding: 10px;
+    }
+
+    .boton {
+        width: 100%;
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .labelOpenModalDelete,
+    .labelCloseModalDelete {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .modalDelete {
+        padding: 20px;
+    }
+
+    
+    .buttonDelete {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}

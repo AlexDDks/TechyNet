@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: rgb(245, 245, 245);
+    color: rgb(245, 245, 245);
+    position: relative;
+    min-height: 100vh;
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0 0 0;
+}
+
+.formLogin {
+    background-color: rgb(40, 40, 40);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    width: 400px;
+    height: auto;
+}
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    color: rgb(245, 245, 245);
+    margin-bottom: 20px;
+}
+
+.divForm {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input.barra, input.inputFile {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 4px;
+    background-color: rgb(18, 18, 18);
+    color: rgb(245, 245, 245);
+}
+
+input.barra::placeholder, input.inputFile::placeholder {
+    color: rgb(245, 245, 245);
+}
+
+.labelFile {
+    color: rgb(245, 245, 245);
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.errorMsg {
+    color: rgb(255, 100, 100);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.boton {
+    background-color: rgb(245, 245, 245);
+    color: rgb(18, 18, 18);
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.boton:hover {
+    background-color: rgb(200, 200, 200);
+}
+
+.login {
+    color: rgb(245, 245, 245);
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.login:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .mainContainer {
+        padding-top: 70px;
+    }
+
+    .formLogin {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .boton {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 468px) {
+    .mainContainer {
+        padding-top: 50px;
+    }
+
+    .formLogin {
+        padding: 10px;
+    }
+
+    .boton {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
